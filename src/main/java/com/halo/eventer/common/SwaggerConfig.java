@@ -1,4 +1,4 @@
-package zkffl0.whatever.common.config;
+package com.halo.eventer.common;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;

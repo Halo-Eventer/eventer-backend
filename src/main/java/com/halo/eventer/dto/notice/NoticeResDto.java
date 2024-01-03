@@ -20,7 +20,7 @@ public class NoticeResDto {
     private String content;
 
     @Schema(example = "2024-01-03T23:00:00")
-    private LocalDateTime useTime;
+    private LocalDateTime updateTime;
 
 }
 
