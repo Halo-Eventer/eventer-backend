@@ -52,12 +52,13 @@ public class NoticeService {
                 .build();
 
         List<NoticeResDto> noticeInfos = noticePages.getContent()
-                .stream().map(o->new NoticeResDto(o)).collect(Collectors.toList());
+                .stream().map(o->new NoticeResDto(o)).collect(Collectors.toList());  //noticePages에서 가져온 공지사항 정보를 NoticeResDto로 변환한 후, 리스트에 담기
 
         return NoticePageResDto.builder()
                 .noticeInfos(noticeInfos)
                 .pageInfo(pageInfo)
                 .build();
-    }   
+    }
+
 }
 

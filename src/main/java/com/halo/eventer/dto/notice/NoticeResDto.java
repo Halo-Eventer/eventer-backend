@@ -24,9 +24,9 @@ public class NoticeResDto {
     private LocalDateTime updateTime;
 
     public NoticeResDto(Notice notice) {
-        this.title = title;
-        this.content = content;
-        this.updateTime = updateTime;
+        this.title = notice.getTitle();
+        this.content = notice.getContent();
+        this.updateTime = notice.getUpdateTime();
     }
 }
 
