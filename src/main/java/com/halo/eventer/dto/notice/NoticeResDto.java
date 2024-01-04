@@ -1,5 +1,6 @@
 package com.halo.eventer.dto.notice;
 
+import com.halo.eventer.entity.Notice;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
@@ -22,5 +23,10 @@ public class NoticeResDto {
     @Schema(example = "2024-01-03T23:00:00")
     private LocalDateTime updateTime;
 
+    public NoticeResDto(Notice notice) {
+        this.title = title;
+        this.content = content;
+        this.updateTime = updateTime;
+    }
 }
 
