@@ -31,6 +31,24 @@ dependencies {
 
 	//Swagger
 	implementation("org.springdoc:springdoc-openapi-ui:1.6.11")
+
+	//lombok
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	// Spring Security
+	//implementation 'org.springframework.boot:spring-boot-starter-security'
+
+	//JWT
+	implementation "io.jsonwebtoken:jjwt-api:0.11.5"
+	runtimeOnly "io.jsonwebtoken:jjwt-impl:0.11.5"
+	runtimeOnly "io.jsonwebtoken:jjwt-jackson:0.11.5"
+
+	//mysql driver
+	runtimeOnly 'com.mysql:mysql-connector-j'
+
+	//HttpClient
+	implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
 }
 
 tasks.named('bootBuildImage') {
