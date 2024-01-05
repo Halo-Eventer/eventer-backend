@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.webjars.NotFoundException;
 
 @Tag(name = "공지사항", description = "공지사항과 관련된 모든 것")
 @RestController
@@ -39,5 +40,18 @@ public class NoticeController {
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(noticeService.inquireNoticeTitles(page, size));
+    }
+
+
+    /**   공지사항 보여주기   */
+    @GetMapping("/{notice_id}")
+    public ResponseEntity<?> getNotice(@PathVariable("notice_id") Long id) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(noticeService.getNotice(id));
+        } catch (NotFoundException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(e.getMessage());
+        }
     }
 }

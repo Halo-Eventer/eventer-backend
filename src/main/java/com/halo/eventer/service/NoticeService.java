@@ -13,8 +13,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.webjars.NotFoundException;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -60,5 +62,12 @@ public class NoticeService {
                 .build();
     }
 
+    @Transactional
+    public Notice getNotice(Long id) {
+        Notice notice = noticeRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(id + "에 해당하는 공지사항이 존재하지 않습니다."));
+
+        return notice;
+    }
 }
 
