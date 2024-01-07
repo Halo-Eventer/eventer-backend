@@ -11,7 +11,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/halo_eventerDB
     username: halo-admin
-    password: eventer2024
+    password: 0209ahc@
     driver-class-namew: com.mysql.cj.jdbc.Driver
 
   jpa:

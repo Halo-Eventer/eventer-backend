@@ -1,16 +1,20 @@
 package com.halo.eventer.entity;
 
 
-import jakarta.persistence.*;
+import com.halo.eventer.dto.festival.FestivalCreateDto;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Festival {
 
     @Id
@@ -26,28 +30,36 @@ public class Festival {
     private String location;
 
     @OneToMany(mappedBy = "festival", fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
-    private ArrayList<Booth> booths = new ArrayList<>();
+    private List<Booth> booths = new ArrayList<>();
 
     @OneToMany(mappedBy = "festival", fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
-    private ArrayList<Store> stores = new ArrayList<>();
+    private List<Store> stores = new ArrayList<>();
 
     @OneToMany(mappedBy = "festival", fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
-    private ArrayList<Event> events = new ArrayList<>();
+    private List<Event> events = new ArrayList<>();
 
     @OneToMany(mappedBy = "festival", fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
-    private ArrayList<Concert> concerts = new ArrayList<>();
+    private List<Concert> concerts = new ArrayList<>();
 
     @OneToMany(mappedBy = "festival", fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
-    private ArrayList<Amenity> amenities = new ArrayList<>();
+    private List<Amenity> amenities = new ArrayList<>();
 
     @OneToMany(mappedBy = "festival", fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
-    private ArrayList<Notice> notices = new ArrayList<>();
+    private List<Notice> notices = new ArrayList<>();
 
 
-    public Festival(String name, String content, String image, String location) {
-        this.name = name;
-        this.content = content;
-        this.image = image;
-        this.location = location;
+    @Builder
+    public Festival(FestivalCreateDto festivalCreateDto) {
+        this.name = festivalCreateDto.getName();
+        this.content = festivalCreateDto.getContent();
+        this.image = festivalCreateDto.getImage();
+        this.location = festivalCreateDto.getLocation();
+    }
+
+    public void setFestival(FestivalCreateDto festivalCreateDto) {
+        this.name = festivalCreateDto.getName();
+        this.content = festivalCreateDto.getContent();
+        this.image = festivalCreateDto.getImage();
+        this.location = festivalCreateDto.getLocation();
     }
 }

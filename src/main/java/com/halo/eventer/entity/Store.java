@@ -1,11 +1,13 @@
 package com.halo.eventer.entity;
 
 
-import jakarta.persistence.*;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -32,7 +34,7 @@ public class Store {
     private Festival festival;
 
     @OneToMany(mappedBy = "store", fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
-    private ArrayList<Menu> menus = new ArrayList<>();
+    private List<Menu> menus = new ArrayList<>();
 
     public Store(String tag, String name, String summary, String location, Boolean isOperation, String operationHours, Festival festival) {
         this.tag = tag;
