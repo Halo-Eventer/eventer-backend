@@ -33,14 +33,15 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 
+<<<<<<< HEAD
 	// Spring Security
 	//implementation 'org.springframework.boot:spring-boot-starter-security'
 
+=======
+>>>>>>> main
 	//mysql driver
 	runtimeOnly 'com.mysql:mysql-connector-j'
 
-	//HttpClient
-	implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
 }
 
 tasks.named('bootBuildImage') {
