@@ -5,20 +5,23 @@ package com.halo.eventer.controller;
 import com.halo.eventer.dto.store.StoreCreateDto;
 import com.halo.eventer.service.StoreService;
 import com.halo.eventer.swagger.festival.*;
+import com.halo.eventer.swagger.store.*;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "상점")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/store")
 public class StoreController {
     private final StoreService storeService;
 
-    @CreateReqApi
-    @CreateResApi
+    @CreateStoreReqApi
+    @CreateStoreResApi
     @PostMapping()
     public ResponseEntity<?> createStore(@RequestBody StoreCreateDto storeCreateDto,
                                          @RequestParam("festivalId") Long id){
@@ -33,8 +36,7 @@ public class StoreController {
     }
 
 
-    @GetResApi
-    @GetReqApi
+    @GetStoreApi
     @GetMapping("/{storeId}")
     public ResponseEntity<?> getStore(@PathVariable("storeId")Long id){
         try{
@@ -47,8 +49,7 @@ public class StoreController {
         }
     }
 
-    //@GetAllResApi
-    //@GetAllReqApi
+    @GetStoresApi
     @GetMapping()
     public ResponseEntity<?> getStores(@RequestParam("festivalId")Long id){
         try{
@@ -62,8 +63,7 @@ public class StoreController {
     }
 
 
-    @UpdateResApi
-    @UpdateReqApi
+    @UpdateStoreApi
     @PatchMapping("/{storeId}")
     public ResponseEntity<?> updateStore(@PathVariable("storeId") Long id,
                                          @RequestBody StoreCreateDto storeCreateDto){
@@ -78,8 +78,7 @@ public class StoreController {
     }
 
 
-    @DeleteResApi
-    @DeleteReqAPi
+    @DeleteStoreApi
     @DeleteMapping("/{storeId}")
     public ResponseEntity<?> deleteStore(@PathVariable("storeId") Long id){
         try{
