@@ -23,10 +23,8 @@ public class FestivalService {
             throw new Exception("중복생성");
 
         }
-        log.info("test");
         festivalRepository.save(Festival.builder().festivalCreateDto(festivalCreateDto)
                 .build());
-        log.info("test1");
         return "저장완료";
     }
 
