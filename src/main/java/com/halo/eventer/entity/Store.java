@@ -2,6 +2,9 @@ package com.halo.eventer.entity;
 
 
 
+import com.halo.eventer.common.StoreType;
+import com.halo.eventer.dto.store.StoreCreateDto;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -17,17 +20,19 @@ public class Store {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String tag;
-
     private String name;
 
     private String summary;
 
-    private String location;
+    private double latitude; // 위도
+    private double longitude; // 경도
 
     private Boolean isOperation;
 
     private String operationHours;
+
+    @Enumerated(EnumType.STRING)
+    private StoreType type;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "festival_id")
@@ -36,13 +41,30 @@ public class Store {
     @OneToMany(mappedBy = "store", fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
     private List<Menu> menus = new ArrayList<>();
 
-    public Store(String tag, String name, String summary, String location, Boolean isOperation, String operationHours, Festival festival) {
-        this.tag = tag;
-        this.name = name;
-        this.summary = summary;
-        this.location = location;
-        this.isOperation = isOperation;
-        this.operationHours = operationHours;
+    @Builder
+    public Store(StoreCreateDto storeCreateDto) {
+        this.name = storeCreateDto.getName();
+        this.summary = storeCreateDto.getSummary();
+        this.latitude = storeCreateDto.getLatitude();
+        this.longitude = storeCreateDto.getLongitude();
+        this.isOperation = storeCreateDto.getIsOperation();
+        this.operationHours = storeCreateDto.getOperationHours();
+    }
+
+    public void setStore(StoreCreateDto storeCreateDto) {
+        this.name = storeCreateDto.getName();
+        this.summary = storeCreateDto.getSummary();
+        this.latitude = storeCreateDto.getLatitude();
+        this.longitude = storeCreateDto.getLongitude();
+        this.isOperation = storeCreateDto.getIsOperation();
+        this.operationHours = storeCreateDto.getOperationHours();
+    }
+
+    public void setFestival(Festival festival){
         this.festival = festival;
+    }
+
+    public void setType (StoreType storeType){
+        this.type = storeType;
     }
 }
