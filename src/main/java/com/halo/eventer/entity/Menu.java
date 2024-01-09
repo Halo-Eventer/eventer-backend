@@ -1,7 +1,7 @@
 package com.halo.eventer.entity;
 
 
-import com.halo.eventer.dto.Menu.MenuCreateDto;
+import com.halo.eventer.dto.menu.MenuCreateDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

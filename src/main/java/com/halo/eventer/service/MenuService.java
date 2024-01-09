@@ -1,8 +1,8 @@
 package com.halo.eventer.service;
 
 
-import com.halo.eventer.dto.Menu.MenuCreateDto;
-import com.halo.eventer.dto.Menu.MenuResDto;
+import com.halo.eventer.dto.menu.MenuCreateDto;
+import com.halo.eventer.dto.menu.MenuResDto;
 import com.halo.eventer.entity.Menu;
 import com.halo.eventer.entity.Store;
 import com.halo.eventer.repository.MenuRepository;

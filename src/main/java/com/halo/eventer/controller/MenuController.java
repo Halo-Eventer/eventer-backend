@@ -1,6 +1,6 @@
 package com.halo.eventer.controller;
 
-import com.halo.eventer.dto.Menu.MenuCreateDto;
+import com.halo.eventer.dto.menu.MenuCreateDto;
 import com.halo.eventer.service.MenuService;
 import com.halo.eventer.swagger.menu.CreateMenuAPi;
 import com.halo.eventer.swagger.menu.DeleteMenuApi;
