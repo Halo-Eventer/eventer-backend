@@ -1,4 +1,4 @@
-package com.halo.eventer.dto.Menu;
+package com.halo.eventer.dto.menu;
 
 
 import lombok.Getter;

@@ -1,6 +1,7 @@
 package com.halo.eventer.entity;
 
 
+import com.halo.eventer.dto.booth.BoothCreateDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -20,7 +21,8 @@ public class Booth {
 
     private String summary;
 
-    private String location;
+    private double latitude; // 위도
+    private double longitude; // 경도
 
     private Boolean isOperation;
 
@@ -30,13 +32,26 @@ public class Booth {
     @JoinColumn(name = "festival_id")
     private Festival festival;
 
-    public Booth(String tag, String name, String summary, String location, Boolean isOperation, String operationHours,Festival festival) {
-        this.tag = tag;
-        this.name = name;
-        this.summary = summary;
-        this.location = location;
-        this.isOperation = isOperation;
-        this.operationHours = operationHours;
+    public Booth(BoothCreateDto booth) {
+        this.tag = booth.getTag();
+        this.name = booth.getName();
+        this.summary = booth.getSummary();
+        this.latitude = booth.getLatitude();
+        this.longitude = booth.getLongitude();
+        this.isOperation = booth.getIsOperation();
+        this.operationHours = booth.getOperationHours();
+    }
+
+    public void setFestival(Festival festival) {
         this.festival = festival;
+    }
+    public void setAll(BoothCreateDto booth) {
+        this.tag = booth.getTag();
+        this.name = booth.getName();
+        this.summary = booth.getSummary();
+        this.latitude = booth.getLatitude();
+        this.longitude = booth.getLongitude();
+        this.isOperation = booth.getIsOperation();
+        this.operationHours = booth.getOperationHours();
     }
 }

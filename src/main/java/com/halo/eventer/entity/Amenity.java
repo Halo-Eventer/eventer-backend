@@ -1,6 +1,7 @@
 package com.halo.eventer.entity;
 
 
+import com.halo.eventer.dto.amenity.AmenityCreateDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -22,7 +23,8 @@ public class Amenity {
 
     private String summary;
 
-    private String location;
+    private double latitude; // 위도
+    private double longitude; // 경도
 
     private Boolean isOperation;
 
@@ -31,4 +33,28 @@ public class Amenity {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "festival_id")
     private Festival festival;
+
+    public Amenity(AmenityCreateDto a) {
+        this.tag = a.getTag();
+        this.name = a.getName();
+        this.summary = a.getSummary();
+        this.latitude = a.getLatitude();
+        this.longitude = a.getLongitude();
+        this.isOperation = a.getIsOperation();
+        this.operationHours = a.getOperationHours();
+    }
+
+    public void setFestival(Festival festival) {
+        this.festival = festival;
+    }
+    public void setAll(AmenityCreateDto a) {
+        this.tag = a.getTag();
+        this.name = a.getName();
+        this.summary = a.getSummary();
+        this.latitude = a.getLatitude();
+        this.longitude = a.getLongitude();
+        this.isOperation = a.getIsOperation();
+        this.operationHours = a.getOperationHours();
+    }
+
 }
