@@ -13,4 +13,9 @@ public class MenuCreateDto {
 
     private String summary;
 
+    public MenuCreateDto(String name, Integer price, String summary) {
+        this.name = name;
+        this.price = price;
+        this.summary = summary;
+    }
 }
