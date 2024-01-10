@@ -2,6 +2,10 @@ package com.halo.eventer.controller;
 
 import com.halo.eventer.dto.notice.NoticeReqDto;
 import com.halo.eventer.service.NoticeService;
+import com.halo.eventer.swagger.notice.CreateNoticeReqApi;
+import com.halo.eventer.swagger.notice.CreateNoticeResApi;
+import com.halo.eventer.swagger.notice.GetNoticeReqApi;
+import com.halo.eventer.swagger.notice.GetNoticeResApi;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,6 +25,8 @@ public class NoticeController {
 
 
     /**   공지사항 생성하기   */
+    @CreateNoticeReqApi
+    @CreateNoticeResApi
     @PostMapping
     public ResponseEntity<?> registerNotice(@RequestBody NoticeReqDto noticeReqDto) {
         try {
@@ -44,6 +50,8 @@ public class NoticeController {
 
 
     /**   공지사항 보여주기   */
+    @GetNoticeReqApi
+    @GetNoticeResApi
     @GetMapping("/{notice_id}")
     public ResponseEntity<?> getNotice(@PathVariable("notice_id") Long id) {
         try {
