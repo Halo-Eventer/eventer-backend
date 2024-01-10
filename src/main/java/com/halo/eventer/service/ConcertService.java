@@ -39,35 +39,35 @@ public class ConcertService {
                 .build();
     }
 
-    @Transactional
-    public Concert getConcert(Long id) {
-        Concert concert = concertRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException(id + "에 해당하는 공연장이 존재하지 않습니다."));
-
-        return concert;
-    }
-
-
-
-//    /**   공연장 정보 가져오기   */
 //    @Transactional
-//    public ConcertResDto getConcert(Long id) {
+//    public Concert getConcert(Long id) {
 //        Concert concert = concertRepository.findById(id)
 //                .orElseThrow(() -> new NotFoundException(id + "에 해당하는 공연장이 존재하지 않습니다."));
 //
-//        Boolean isOperation =  updateConcertStatus(concert);
-//
-//        return ConcertResDto.builder()
-//                .tag(concert.getTag())
-//                .name(concert.getName())
-//                .summary(concert.getSummary())
-//                .location(concert.getLocation())
-//                .isOperation(isOperation)
-//                .openingTime(concert.getOpeningTime())
-//                .closingTime(concert.getClosingTime())
-//                .useTime(concert.getUseTime())
-//                .build();
+//        return concert;
 //    }
+
+
+
+    /**   공연장 정보 가져오기   */
+    @Transactional
+    public ConcertResDto getConcert(Long id) {
+        Concert concert = concertRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(id + "에 해당하는 공연장이 존재하지 않습니다."));
+
+        Boolean isOperation =  updateConcertStatus(concert);
+
+        return ConcertResDto.builder()
+                .tag(concert.getTag())
+                .name(concert.getName())
+                .summary(concert.getSummary())
+                .location(concert.getLocation())
+                .isOperation(isOperation)
+                .openingTime(concert.getOpeningTime())
+                .closingTime(concert.getClosingTime())
+                .useTime(concert.getUseTime())
+                .build();
+    }
 
     /**   isOperation 업데이트   */
     public Boolean updateConcertStatus(Concert concert) {
