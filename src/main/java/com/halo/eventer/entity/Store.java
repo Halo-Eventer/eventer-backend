@@ -23,13 +23,18 @@ public class Store {
     private String name;
 
     private String summary;
+    private String content;
+
+    private String location;
 
     private double latitude; // 위도
     private double longitude; // 경도
 
     private Boolean isOperation;
-
     private String operationHours;
+
+    private String thumbnail;
+
 
     @Enumerated(EnumType.STRING)
     private StoreType type;
@@ -43,12 +48,15 @@ public class Store {
 
     @Builder
     public Store(StoreCreateDto storeCreateDto) {
+        this.location = storeCreateDto.getLocation();
+        this.content = storeCreateDto.getContent();
         this.name = storeCreateDto.getName();
         this.summary = storeCreateDto.getSummary();
         this.latitude = storeCreateDto.getLatitude();
         this.longitude = storeCreateDto.getLongitude();
         this.isOperation = storeCreateDto.getIsOperation();
         this.operationHours = storeCreateDto.getOperationHours();
+        this.thumbnail = storeCreateDto.getThumbnail();
     }
 
     public void setStore(StoreCreateDto storeCreateDto) {

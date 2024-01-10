@@ -17,9 +17,9 @@ public class StoreResDto {
     private String name;
 
     private String summary;
+    private String content;
 
-    private double latitude; // 위도
-    private double longitude; // 경도
+    private String location;
 
     private Boolean isOperation;
 
@@ -31,8 +31,8 @@ public class StoreResDto {
         this.id = store.getId();
         this.name = store.getName();
         this.summary = store.getSummary();
-        this.latitude = store.getLatitude();
-        this.longitude = store.getLongitude();
+        this.content = store.getContent();
+        this.location = store.getLocation();
         this.isOperation = store.getIsOperation();
         this.operationHours = store.getOperationHours();
         this.type = store.getType().toString();
