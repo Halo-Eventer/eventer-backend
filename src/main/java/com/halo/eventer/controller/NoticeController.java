@@ -46,8 +46,9 @@ public class NoticeController {
                                                  @RequestParam("page") @Min(0) int page, // @Min(0) 어노테이션을 통해 이 값들이 0 이상이어야 한다는 제약을 걸어둠
                                                  @RequestParam("size") @Min(0) int size) {
 
+
         return ResponseEntity.status(HttpStatus.OK)
-                .body(noticeService.inquireNoticeTitles(page, size));
+                .body(noticeService.inquireNotices(festivalId));
     }
 
 

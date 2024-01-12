@@ -25,6 +25,10 @@ public class Notice {
 
     private String title;
 
+    private String simpleExplanation;
+
+    private String subtitle;
+
     private String content;
 
     @OneToMany(mappedBy = "notice", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
@@ -45,5 +49,6 @@ public class Notice {
 
     public void setFestival(Festival festival) {
         this.festival = festival;
+
     }
 }
