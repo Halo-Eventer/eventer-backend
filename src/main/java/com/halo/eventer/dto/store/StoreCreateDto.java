@@ -3,6 +3,8 @@ package com.halo.eventer.dto.store;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Getter
 @NoArgsConstructor
 public class StoreCreateDto {
@@ -21,7 +23,6 @@ public class StoreCreateDto {
     private double longitude; // 경도
 
     private String thumbnail;
-
     private String type;
 
 }

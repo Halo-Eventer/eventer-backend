@@ -1,5 +1,7 @@
 package com.halo.eventer.dto.store;
 
+import com.halo.eventer.dto.menu.MenuResDto;
+import com.halo.eventer.entity.Image;
 import com.halo.eventer.entity.Menu;
 import com.halo.eventer.entity.Store;
 import lombok.Getter;
@@ -7,12 +9,11 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @NoArgsConstructor
 public class StoreResDto {
-
-    private Long id;
 
     private String name;
 
@@ -27,8 +28,11 @@ public class StoreResDto {
 
     private String type;
 
+    private String thumbnail;
+
+    private List<MenuResDto> menus;
+
     public StoreResDto(Store store) {
-        this.id = store.getId();
         this.name = store.getName();
         this.summary = store.getSummary();
         this.content = store.getContent();
@@ -36,5 +40,10 @@ public class StoreResDto {
         this.isOperation = store.getIsOperation();
         this.operationHours = store.getOperationHours();
         this.type = store.getType().toString();
+        this.thumbnail = store.getThumbnail();
+    }
+
+    public void setMenus(List<Menu> menus){
+        this.menus = menus.stream().map(o->new MenuResDto(o)).collect(Collectors.toList());
     }
 }

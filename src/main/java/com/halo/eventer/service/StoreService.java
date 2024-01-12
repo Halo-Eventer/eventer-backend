@@ -7,8 +7,10 @@ import com.halo.eventer.dto.store.GetAllStoreResDto;
 import com.halo.eventer.dto.store.StoreCreateDto;
 import com.halo.eventer.dto.store.StoreResDto;
 import com.halo.eventer.entity.Festival;
+import com.halo.eventer.entity.Image;
 import com.halo.eventer.entity.Store;
 import com.halo.eventer.repository.FestivalRepository;
+import com.halo.eventer.repository.ImageRepository;
 import com.halo.eventer.repository.StoreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,12 +25,16 @@ import java.util.stream.Collectors;
 public class StoreService {
     private final StoreRepository storeRepository;
     private final FestivalRepository festivalRepository;
+    private final ImageRepository imageRepository;
 
+    @Transactional
     public String createStore(StoreCreateDto storeCreateDto, Long festivalId)throws Exception{
         //TODO:: 매장 중복 검사 어떻게?
 
         Store store = Store.builder().storeCreateDto(storeCreateDto)
                 .build();
+
+
 
         store.setFestival(festivalRepository.findById(festivalId).orElseThrow(()-> new Exception("존재하지 않습니다.")));
         if(storeCreateDto.getType().equals("주점")){
@@ -47,6 +53,7 @@ public class StoreService {
     public StoreResDto getStore(Long storeId)throws Exception{
         Store store = storeRepository.findById(storeId).orElseThrow(()->new NotFoundException("존재하지 않습니다"));
         StoreResDto response = new StoreResDto(store);
+        response.setMenus(store.getMenus());
 
         return response;
     }
@@ -72,6 +79,9 @@ public class StoreService {
             store.setType(StoreType.기타);
         }
         StoreResDto response = new StoreResDto(store);
+
+
+
         return response;
     }
 

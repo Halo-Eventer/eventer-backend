@@ -6,11 +6,9 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
-@AllArgsConstructor
+
 @NoArgsConstructor
 @Getter
-@Setter
-@Builder
 @Schema(name = "공지사항 정보")
 public class NoticeResDto {
     @Schema(example = "1")
@@ -31,8 +29,8 @@ public class NoticeResDto {
     @Schema(example = "2024-01-03T23:00:00")
     private LocalDateTime updateTime;
 
-    @Schema(example = "1")
-    private Long festivalId;
+
+    private String image;
 
     public NoticeResDto(Notice notice) {
         this.id = notice.getId();
@@ -41,7 +39,9 @@ public class NoticeResDto {
         this.subtitle = notice.getSubtitle();
         this.content = notice.getContent();
         this.updateTime = notice.getUpdateTime();
-        this.festivalId = notice.getFestival().getId();
+        this.image = notice.getImages().get(0).getImage_url();
+        
+
     }
 }
 
