@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Schema(name = "공지사항 정보")
 public class NoticeResDto {
     @Schema(example = "1")
-    private int id;
+    private Long id;
 
     @Schema(example = "주류 안내")
     private String title;
@@ -26,6 +26,7 @@ public class NoticeResDto {
     private LocalDateTime updateTime;
 
     public NoticeResDto(Notice notice) {
+        this.id = notice.getId();
         this.title = notice.getTitle();
         this.content = notice.getContent();
         this.updateTime = notice.getUpdateTime();

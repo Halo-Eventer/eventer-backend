@@ -11,6 +11,8 @@ import java.time.LocalDateTime;
 @Getter
 @Schema(name = "공지사항 정보")
 public class NoticeReqDto {
+    @Schema(example = "1")
+    private Long id;
 
     @Schema(example = "주류 안내")
     private String title;
