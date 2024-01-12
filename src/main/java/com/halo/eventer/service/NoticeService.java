@@ -29,6 +29,7 @@ public class NoticeService {
     @Transactional
     public NoticeResDto registerNotice(NoticeReqDto noticeReqDto) {
         Notice notice = Notice.builder()
+                .id(noticeReqDto.getId())
                 .title(noticeReqDto.getTitle())
                 .content(noticeReqDto.getContent())
                 .updateTime(noticeReqDto.getUpdateTime())
@@ -36,6 +37,7 @@ public class NoticeService {
 
         noticeRepository.save(notice);
         return NoticeResDto.builder()
+                .id(notice.getId())
                 .title(notice.getTitle())
                 .content(notice.getContent())
                 .updateTime(notice.getUpdateTime())
