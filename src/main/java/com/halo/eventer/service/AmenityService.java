@@ -3,6 +3,8 @@ package com.halo.eventer.service;
 import com.halo.eventer.common.StoreType;
 import com.halo.eventer.dto.amenity.AmenityCreateDto;
 import com.halo.eventer.dto.amenity.AmenityResDto;
+import com.halo.eventer.dto.amenity.GetAllAmenityResDto;
+import com.halo.eventer.dto.store.GetAllStoreResDto;
 import com.halo.eventer.dto.store.StoreCreateDto;
 import com.halo.eventer.dto.store.StoreResDto;
 import com.halo.eventer.entity.Amenity;
@@ -39,9 +41,9 @@ public class AmenityService {
         return new AmenityResDto(amenity);
     }
 
-    public List<AmenityResDto> getAmenities(Long festivalId) throws Exception{
-        List<AmenityResDto> response = amenityRepository.findAllByFestival(festivalRepository.findById(festivalId).orElseThrow(()->new Exception("존재하지 않습니다.")))
-                .stream().map(o->new AmenityResDto(o)).collect(Collectors.toList());
+    public List<GetAllAmenityResDto> getAmenities(Long festivalId) throws Exception{
+        List<GetAllAmenityResDto> response = amenityRepository.findAllByFestival(festivalRepository.findById(festivalId).orElseThrow(()->new Exception("존재하지 않습니다.")))
+                .stream().map(o->new GetAllAmenityResDto(o)).collect(Collectors.toList());
 
         return response;
     }

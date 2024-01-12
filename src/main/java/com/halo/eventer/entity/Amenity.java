@@ -25,6 +25,7 @@ public class Amenity {
 
     private double latitude; // 위도
     private double longitude; // 경도
+    private String location;
 
     private Boolean isOperation;
 
@@ -42,6 +43,7 @@ public class Amenity {
         this.longitude = a.getLongitude();
         this.isOperation = a.getIsOperation();
         this.operationHours = a.getOperationHours();
+        this.location = a.getLocation();
     }
 
     public void setFestival(Festival festival) {

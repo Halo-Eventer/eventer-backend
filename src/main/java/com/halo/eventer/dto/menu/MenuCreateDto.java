@@ -1,6 +1,7 @@
 package com.halo.eventer.dto.menu;
 
 
+import com.halo.eventer.entity.Menu;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -12,10 +13,6 @@ public class MenuCreateDto {
     private Integer price;
 
     private String summary;
+    private String image;
 
-    public MenuCreateDto(String name, Integer price, String summary) {
-        this.name = name;
-        this.price = price;
-        this.summary = summary;
-    }
 }

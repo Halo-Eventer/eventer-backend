@@ -23,6 +23,8 @@ public class Store {
     private String name;
 
     private String summary;
+
+    @Column(columnDefinition = "varchar(500)")
     private String content;
 
     private String location;
@@ -39,12 +41,13 @@ public class Store {
     @Enumerated(EnumType.STRING)
     private StoreType type;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "festival_id")
     private Festival festival;
 
-    @OneToMany(mappedBy = "store", fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "store", fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
     private List<Menu> menus = new ArrayList<>();
+
 
     @Builder
     public Store(StoreCreateDto storeCreateDto) {
@@ -60,12 +63,15 @@ public class Store {
     }
 
     public void setStore(StoreCreateDto storeCreateDto) {
+        this.location = storeCreateDto.getLocation();
+        this.content = storeCreateDto.getContent();
         this.name = storeCreateDto.getName();
         this.summary = storeCreateDto.getSummary();
         this.latitude = storeCreateDto.getLatitude();
         this.longitude = storeCreateDto.getLongitude();
         this.isOperation = storeCreateDto.getIsOperation();
         this.operationHours = storeCreateDto.getOperationHours();
+        this.thumbnail = storeCreateDto.getThumbnail();
     }
 
     public void setFestival(Festival festival){

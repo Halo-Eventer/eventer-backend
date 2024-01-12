@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -21,16 +23,26 @@ public class Booth {
 
     private String summary;
 
+    @Column(columnDefinition = "varchar(500)")
+    private String content;
+
     private double latitude; // 위도
     private double longitude; // 경도
+    private String location;
+
 
     private Boolean isOperation;
 
     private String operationHours;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    private String thumbnail;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "festival_id")
     private Festival festival;
+
+    @OneToMany(mappedBy = "booth", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    private List<Image> images = new ArrayList<>();
 
     public Booth(BoothCreateDto booth) {
         this.tag = booth.getTag();
@@ -40,6 +52,9 @@ public class Booth {
         this.longitude = booth.getLongitude();
         this.isOperation = booth.getIsOperation();
         this.operationHours = booth.getOperationHours();
+        this.content = booth.getContent();
+        this.location = booth.getLocation();
+        this.thumbnail = booth.getThumbnail();
     }
 
     public void setFestival(Festival festival) {

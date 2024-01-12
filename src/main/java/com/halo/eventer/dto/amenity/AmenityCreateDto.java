@@ -16,6 +16,7 @@ public class AmenityCreateDto {
 
     private double latitude; // 위도
     private double longitude; // 경도
+    private String location;
 
     private Boolean isOperation;
 
