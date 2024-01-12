@@ -2,10 +2,7 @@ package com.halo.eventer.controller;
 
 import com.halo.eventer.dto.notice.NoticeReqDto;
 import com.halo.eventer.service.NoticeService;
-import com.halo.eventer.swagger.notice.CreateNoticeReqApi;
-import com.halo.eventer.swagger.notice.CreateNoticeResApi;
-import com.halo.eventer.swagger.notice.GetNoticeReqApi;
-import com.halo.eventer.swagger.notice.GetNoticeResApi;
+import com.halo.eventer.swagger.notice.*;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -40,6 +37,8 @@ public class NoticeController {
 
 
     /**   페이징 처리된 공지사항 제목들 조회하기   */
+    @GetNoticesReqApi
+    @GetNoticesResApi
     @GetMapping("/{festivalId}/list")
     public ResponseEntity<?> inquireNotices(@PathVariable Long festivalId) {
 
