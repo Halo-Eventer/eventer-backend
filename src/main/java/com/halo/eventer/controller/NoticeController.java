@@ -48,7 +48,7 @@ public class NoticeController {
 
 
         return ResponseEntity.status(HttpStatus.OK)
-                .body(noticeService.inquireNotices(festivalId));
+                .body(noticeService.inquireNotices(id));
     }
 
 
