@@ -28,10 +28,11 @@ public class NoticeController {
     @CreateNoticeReqApi
     @CreateNoticeResApi
     @PostMapping
-    public ResponseEntity<?> registerNotice(@RequestBody NoticeReqDto noticeReqDto) {
+    public ResponseEntity<?> registerNotice(@RequestBody NoticeReqDto noticeReqDto,
+                                            @RequestParam("festivalId") Long id) {
         try {
             return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(noticeService.registerNotice(noticeReqDto));
+                    .body(noticeService.registerNotice(noticeReqDto,id));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(e.getMessage());
@@ -40,8 +41,9 @@ public class NoticeController {
 
 
     /**   페이징 처리된 공지사항 제목들 조회하기   */
-    @GetMapping("infos")
-    public ResponseEntity<?> inquireNoticeTitles(@RequestParam("page") @Min(0) int page, // @Min(0) 어노테이션을 통해 이 값들이 0 이상이어야 한다는 제약을 걸어둠
+    @GetMapping()
+    public ResponseEntity<?> inquireNoticeTitles(@RequestParam("festivalId") Long id,
+                                                 @RequestParam("page") @Min(0) int page, // @Min(0) 어노테이션을 통해 이 값들이 0 이상이어야 한다는 제약을 걸어둠
                                                  @RequestParam("size") @Min(0) int size) {
 
         return ResponseEntity.status(HttpStatus.OK)

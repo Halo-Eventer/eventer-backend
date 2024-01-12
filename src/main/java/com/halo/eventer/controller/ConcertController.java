@@ -1,5 +1,6 @@
 package com.halo.eventer.controller;
 
+import com.halo.eventer.dto.concert.ConcertCreateDto;
 import com.halo.eventer.dto.notice.NoticeReqDto;
 import com.halo.eventer.entity.Concert;
 import com.halo.eventer.service.ConcertService;
@@ -20,17 +21,30 @@ public class ConcertController {
 
     /**   공연장 생성하기   */
     @PostMapping
-    public ResponseEntity<?> registerConcert (@RequestBody Concert concert) {
+    public ResponseEntity<?> registerConcert (@RequestBody ConcertCreateDto createDto,
+                                              @RequestParam("festivalId") Long id) {
         try {
             return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(concertService.registerConcert(concert));
+                    .body(concertService.registerConcert(createDto,id));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(e.getMessage());
         }
     }
 
-    /**   공연장 보여주기   */
+    @GetMapping()
+    public ResponseEntity<?> getAmenities(@RequestParam("festivalId") Long id){
+        try{
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(concertService.getConcerts(id));
+        }
+        catch(Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(e.getMessage());
+        }
+    }
+
+
     @GetMapping("/{concert_id}")
     public ResponseEntity<?> getConcert(@PathVariable("concert_id") Long id) {
         try {

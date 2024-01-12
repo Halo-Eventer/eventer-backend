@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,8 +19,8 @@ public class NoticeReqDto {
     @Schema(example = "모든 주류는 직접 구입해 주셔야 합니다.")
     private String content;
 
-    @Schema(example = "2024-01-03T23:00:00")
-    private LocalDateTime updateTime;
+
+    private List<String> images;
 
 }
 
