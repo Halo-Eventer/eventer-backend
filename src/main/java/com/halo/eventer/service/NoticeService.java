@@ -1,23 +1,20 @@
 package com.halo.eventer.service;
 
-import com.halo.eventer.dto.notice.*;
+import com.halo.eventer.dto.notice.GetAllNoticeResDto;
+import com.halo.eventer.dto.notice.GetNoticeResDto;
+import com.halo.eventer.dto.notice.NoticeReqDto;
+import com.halo.eventer.dto.notice.NoticeResDto;
 import com.halo.eventer.entity.Notice;
 import com.halo.eventer.repository.FestivalRepository;
 import com.halo.eventer.repository.NoticeRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.webjars.NotFoundException;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
-
-import static java.util.stream.DoubleStream.builder;
 
 @Service
 @AllArgsConstructor
@@ -33,6 +30,7 @@ public class NoticeService {
                 .id(noticeReqDto.getId())
                 .title(noticeReqDto.getTitle())
                 .simpleExplanation(noticeReqDto.getSimpleExplanation())
+                .subtitle(noticeReqDto.getSubtitle())
                 .content(noticeReqDto.getContent())
                 .updateTime(noticeReqDto.getUpdateTime())
                 .festival(festivalRepository.findById(noticeReqDto.getFestivalId()).orElseThrow(() -> new NotFoundException(noticeReqDto.getFestivalId() + "에 해당하는 공지사항을 찾을 수 없습니다.")))
@@ -43,6 +41,7 @@ public class NoticeService {
                 .id(notice.getId())
                 .title(notice.getTitle())
                 .simpleExplanation(notice.getSimpleExplanation())
+                .subtitle(notice.getSubtitle())
                 .content(notice.getContent())
                 .updateTime(notice.getUpdateTime())
                 .festivalId(notice.getFestival().getId())
@@ -62,17 +61,14 @@ public class NoticeService {
     }
 
     @Transactional
-    public NoticeResDto getNotice(Long id) {
+    public GetNoticeResDto getNotice(Long id) {
         Notice notice = noticeRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(id + "에 해당하는 공지사항이 존재하지 않습니다."));
 
-        return NoticeResDto.builder()
-                .id(notice.getId())
+        return GetNoticeResDto.builder()
                 .title(notice.getTitle())
-                .simpleExplanation(notice.getSimpleExplanation())
+                .subtitle(notice.getSubtitle())
                 .content(notice.getContent())
-                .updateTime(notice.getUpdateTime())
-                .festivalId(notice.getFestival().getId())
                 .build();
     }
 }
