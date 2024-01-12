@@ -16,9 +16,12 @@ import java.lang.annotation.RetentionPolicy;
                         examples = {
                                 @ExampleObject(name = "공지사항 정보",
                                         value = "{\n" +
-                                                "    \"title\": \"주류 안내\",\n" +
-                                                "    \"content\": \"모든 주류는 직접 구입해 주셔야 합니다.\",\n" +
+                                                "    \"title\": \"반입 금지 물품 안내\",\n" +
+                                                "    \"simpleExplanation\": \"안전하고 편안한 무대 관람을 위한 반입 금지 물품을 숙지해주세요!\",\n" +
+                                                "    \"subtitle\": \"2023세종대학교 대동제 '해피세종데이' 무대 관람 구역 반입 금지 물품 안내\",\n" +
+                                                "    \"content\": \"새로운 바람, 밝은 달 안녕하세요, 세종대학교 제 36대..\",\n" +
                                                 "    \"updateTime\": \"2024-01-03T23:01:00\"\n" +
+                                                "    \"festivalId\": \"1\",\n" +
                                                 "}",
                                         summary = "공지사항 조회 성공", description = "공지사항 정보를 성공적으로 가져온 경우의 예제입니다.")
                         }))
