@@ -22,6 +22,10 @@ public class Notice {
 
     private String title;
 
+    private String simpleExplanation;
+
+    private String subtitle;
+
     private String content;
 
     @LastModifiedDate
@@ -33,6 +37,7 @@ public class Notice {
 
     public Notice(String title, String content, LocalDateTime updateTime) {
         this.title = title;
+        this.subtitle = subtitle;
         this.content = content;
         this.updateTime = updateTime;
     }

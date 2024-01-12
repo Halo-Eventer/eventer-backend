@@ -40,12 +40,11 @@ public class NoticeController {
 
 
     /**   페이징 처리된 공지사항 제목들 조회하기   */
-    @GetMapping("infos")
-    public ResponseEntity<?> inquireNoticeTitles(@RequestParam("page") @Min(0) int page, // @Min(0) 어노테이션을 통해 이 값들이 0 이상이어야 한다는 제약을 걸어둠
-                                                 @RequestParam("size") @Min(0) int size) {
+    @GetMapping("/{festivalId}/list")
+    public ResponseEntity<?> inquireNotices(@PathVariable Long festivalId) {
 
         return ResponseEntity.status(HttpStatus.OK)
-                .body(noticeService.inquireNoticeTitles(page, size));
+                .body(noticeService.inquireNotices(festivalId));
     }
 
 
