@@ -1,30 +1,23 @@
 package com.halo.eventer.service;
 
 
-import com.amazonaws.services.kms.model.ExpiredImportTokenException;
-import com.halo.eventer.dto.notice.*;
+import com.halo.eventer.dto.notice.GetAllNoticeResDto;
+import com.halo.eventer.dto.notice.GetNoticeResDto;
+import com.halo.eventer.dto.notice.GetOneNoticeDto;
+import com.halo.eventer.dto.notice.NoticeReqDto;
 import com.halo.eventer.entity.Festival;
 import com.halo.eventer.entity.Image;
 import com.halo.eventer.entity.Notice;
 import com.halo.eventer.repository.FestivalRepository;
 import com.halo.eventer.repository.ImageRepository;
-
 import com.halo.eventer.repository.NoticeRepository;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.webjars.NotFoundException;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
-
-import static java.util.stream.DoubleStream.builder;
 
 @Service
 @RequiredArgsConstructor
@@ -36,7 +29,7 @@ public class NoticeService {
     private final ImageRepository imageRepository;
 
     @Transactional
-    public String registerNotice(NoticeReqDto noticeReqDto, Long id)throws Exception {
+    public String registerNotice(NoticeReqDto noticeReqDto, Long id) throws Exception {
 
         Festival festival = festivalRepository.findById(id).orElseThrow(()-> new Exception("축제가 존재하지 않습니다."));
 
@@ -68,12 +61,11 @@ public class NoticeService {
     }
 
     @Transactional
-
-    public GetOneNoticeDto getNotice(Long id) {
+    public GetNoticeResDto getNotice(Long id) {
         Notice notice = noticeRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(id + "에 해당하는 공지사항이 존재하지 않습니다."));
 
-        GetOneNoticeDto response = new GetOneNoticeDto(notice);
+        GetNoticeResDto response = new GetNoticeResDto(notice);
         response.setImages(notice.getImages());
 
         return response;

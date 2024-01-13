@@ -1,8 +1,6 @@
 package com.halo.eventer.controller;
 
 import com.halo.eventer.dto.concert.ConcertCreateDto;
-import com.halo.eventer.dto.notice.NoticeReqDto;
-import com.halo.eventer.entity.Concert;
 import com.halo.eventer.service.ConcertService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

@@ -2,10 +2,7 @@ package com.halo.eventer.controller;
 
 import com.halo.eventer.dto.notice.NoticeReqDto;
 import com.halo.eventer.service.NoticeService;
-import com.halo.eventer.swagger.notice.CreateNoticeReqApi;
-import com.halo.eventer.swagger.notice.CreateNoticeResApi;
-import com.halo.eventer.swagger.notice.GetNoticeReqApi;
-import com.halo.eventer.swagger.notice.GetNoticeResApi;
+import com.halo.eventer.swagger.notice.*;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -40,19 +37,18 @@ public class NoticeController {
     }
 
 
-    /**   페이징 처리된 공지사항 제목들 조회하기   */
-    @GetMapping()
-    public ResponseEntity<?> inquireNoticeTitles(@RequestParam("festivalId") Long id,
-                                                 @RequestParam("page") @Min(0) int page, // @Min(0) 어노테이션을 통해 이 값들이 0 이상이어야 한다는 제약을 걸어둠
-                                                 @RequestParam("size") @Min(0) int size) {
-
+    /**   공지사항 리스트 조회하기   */
+    @GetNoticesReqApi
+    @GetNoticesResApi
+    @GetMapping("/{festivalId}/list")
+    public ResponseEntity<?> inquireNotices(@PathVariable Long festivalId) {
 
         return ResponseEntity.status(HttpStatus.OK)
-                .body(noticeService.inquireNotices(id));
+                .body(noticeService.inquireNotices(festivalId));
     }
 
 
-    /**   공지사항 보여주기   */
+    /**   단일 공지사항 조회하기   */
     @GetNoticeReqApi
     @GetNoticeResApi
     @GetMapping("/{notice_id}")

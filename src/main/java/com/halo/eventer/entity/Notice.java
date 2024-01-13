@@ -43,6 +43,8 @@ public class Notice {
 
     public Notice(NoticeReqDto n) {
         this.title = n.getTitle();
+        this.simpleExplanation = n.getSimpleExplanation();
+        this.subtitle = n.getSubtitle();
         this.content = n.getContent();
     }
 

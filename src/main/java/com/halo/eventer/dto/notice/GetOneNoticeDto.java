@@ -17,9 +17,7 @@ public class GetOneNoticeDto {
 
     private String title;
 
-
-    private String content;
-
+    private String simpleExplanation;
 
     private LocalDateTime updateTime;
 
@@ -27,7 +25,7 @@ public class GetOneNoticeDto {
 
     public GetOneNoticeDto(Notice n) {
         this.title = n.getTitle();
-        this.content = n.getContent();
+        this.simpleExplanation = n.getSimpleExplanation();
         this.updateTime = n.getUpdateTime();
     }
     public void setImages(List<Image> images){
