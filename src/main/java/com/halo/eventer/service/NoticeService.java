@@ -45,7 +45,7 @@ public class NoticeService {
     }
 
     @Transactional
-    public List<GetAllNoticeResDto> inquireNotices(Long festivalId) {
+    public List<GetAllNoticeResDto> inquireNotices(Long festivalId) throws NotFoundException{
         List<Notice> notices = noticeRepository.findAllByFestival(festivalRepository.findById(festivalId)
                 .orElseThrow(() -> new NotFoundException(festivalId + "에 해당하는 공지사항이 존재하지 않습니다.")));
 

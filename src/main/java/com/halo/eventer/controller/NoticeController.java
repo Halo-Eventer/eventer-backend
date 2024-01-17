@@ -44,8 +44,13 @@ public class NoticeController {
     @GetMapping("/{festivalId}/list")
     public ResponseEntity<?> inquireNotices(@PathVariable Long festivalId) {
 
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(noticeService.inquireNotices(festivalId));
+        try {
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(noticeService.inquireNotices(festivalId));
+        } catch (NotFoundException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(e.getMessage());
+        }
     }
 
 
