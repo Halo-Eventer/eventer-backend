@@ -13,14 +13,11 @@ import lombok.Getter;
 public class GetAllNoticeResDto {
     private String title;
     private String simpleExplanation;
-    private String image;
+    private String thumbnail;
 
     public GetAllNoticeResDto(Notice notice) {
         this.title = notice.getTitle();
         this.simpleExplanation = notice.getSimpleExplanation();
-    }
-
-    public void setImage(String image) {
-        this.image = image;
+        this.thumbnail = notice.getThumbnail();
     }
 }

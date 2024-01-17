@@ -14,5 +14,7 @@ public interface NoticeRepository extends JpaRepository<Notice, Long> {
     Page<Notice> findAll(Pageable pageable);
 
     List<Notice> findAllByFestival(Festival festival);
+
+    List<Notice> findAllByFestivalAndPicked(Festival festival, Boolean b);
 }
 

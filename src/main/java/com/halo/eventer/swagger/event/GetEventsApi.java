@@ -17,27 +17,25 @@ import java.lang.annotation.RetentionPolicy;
                         @ExampleObject(name = "이벤트 목록",
                                 value = "[\n" +
                                         "    {\n" +
-                                        "        \"id\": 3,\n" +
-                                        "        \"tag\": \"이벤트\",\n" +
-                                        "        \"name\": \"지지지\",\n" +
-                                        "        \"summary\": \"세종대학교 지지학과 이벤트\",\n" +
-                                        "        \"latitude\": 242.12,\n" +
-                                        "        \"longitude\": 112.46,\n" +
-                                        "        \"isOperation\": false,\n" +
-                                        "        \"operationHours\": \"24시간\"\n" +
+                                        "        \"id\": 1,\n" +
+                                        "        \"name\": \"이벤트 1\",\n" +
+                                        "        \"latitude\": 223.12,\n" +
+                                        "        \"longitude\": 112.46\n" +
                                         "    },\n" +
                                         "    {\n" +
-                                        "        \"id\": 4,\n" +
-                                        "        \"tag\": \"이벤트\",\n" +
-                                        "        \"name\": \"지지지\",\n" +
-                                        "        \"summary\": \"세종대학교 지지학과 이벤트\",\n" +
-                                        "        \"latitude\": 242.12,\n" +
-                                        "        \"longitude\": 112.46,\n" +
-                                        "        \"isOperation\": false,\n" +
-                                        "        \"operationHours\": \"24시간\"\n" +
+                                        "        \"id\": 2,\n" +
+                                        "        \"name\": \"이벤트 2\",\n" +
+                                        "        \"latitude\": 113.12,\n" +
+                                        "        \"longitude\": 555.46\n" +
+                                        "    },\n" +
+                                        "    {\n" +
+                                        "        \"id\": 3,\n" +
+                                        "        \"name\": \"이벤트 3\",\n" +
+                                        "        \"latitude\": 422.12,\n" +
+                                        "        \"longitude\": 311.46\n" +
                                         "    }\n" +
                                         "]",
-                                summary = "이벤트 목록 조회 성공", description = "이벤트 목록을 성공적으로 가져온 경우의 예제입니다.")
+                                summary = "부스 목록 조회 성공", description = "부스 목록을 성공적으로 가져온 경우의 예제입니다.")
                 }))
 public @interface GetEventsApi {
 }

@@ -43,8 +43,8 @@ public class ConcertController {
     }
 
 
-    @GetMapping("/{concert_id}")
-    public ResponseEntity<?> getConcert(@PathVariable("concert_id") Long id) {
+    @GetMapping("/{concertId}")
+    public ResponseEntity<?> getConcert(@PathVariable("concertId") Long id) {
         try {
             return ResponseEntity.status(HttpStatus.OK)
                     .body(concertService.getConcert(id));

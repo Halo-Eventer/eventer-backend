@@ -1,5 +1,6 @@
 package com.halo.eventer.controller;
 
+import com.halo.eventer.dto.notice.ChangeBannerReq;
 import com.halo.eventer.dto.notice.NoticeReqDto;
 import com.halo.eventer.service.NoticeService;
 import com.halo.eventer.swagger.notice.*;
@@ -51,12 +52,26 @@ public class NoticeController {
     /**   단일 공지사항 조회하기   */
     @GetNoticeReqApi
     @GetNoticeResApi
-    @GetMapping("/{notice_id}")
-    public ResponseEntity<?> getNotice(@PathVariable("notice_id") Long id) {
+    @GetMapping("/{noticeId}")
+    public ResponseEntity<?> getNotice(@PathVariable("noticeId") Long id) {
         try {
             return ResponseEntity.status(HttpStatus.OK)
                     .body(noticeService.getNotice(id));
         } catch (NotFoundException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(e.getMessage());
+        }
+    }
+
+    @SelectBannerApi
+    @PostMapping("/banner/{festivalId}")
+    public ResponseEntity<?> changeBanner(@RequestBody ChangeBannerReq changeBannerReq,
+                                          @PathVariable("festivalId") Long id){
+        try {
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(noticeService.changeBanner(changeBannerReq,id));
+        }
+        catch(Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(e.getMessage());
         }

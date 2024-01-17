@@ -1,10 +1,7 @@
 package com.halo.eventer.service;
 
 
-import com.halo.eventer.dto.notice.GetAllNoticeResDto;
-import com.halo.eventer.dto.notice.GetNoticeResDto;
-import com.halo.eventer.dto.notice.GetOneNoticeDto;
-import com.halo.eventer.dto.notice.NoticeReqDto;
+import com.halo.eventer.dto.notice.*;
 import com.halo.eventer.entity.Festival;
 import com.halo.eventer.entity.Image;
 import com.halo.eventer.entity.Notice;
@@ -32,7 +29,6 @@ public class NoticeService {
     public String registerNotice(NoticeReqDto noticeReqDto, Long id) throws Exception {
 
         Festival festival = festivalRepository.findById(id).orElseThrow(()-> new Exception("축제가 존재하지 않습니다."));
-
 
         Notice notice = new Notice(noticeReqDto);
         notice.setFestival(festival);
@@ -71,6 +67,26 @@ public class NoticeService {
         return response;
 
 
+    }
+
+    @Transactional
+    public String changeBanner(ChangeBannerReq changeBannerReq, Long id) throws Exception{
+        List<Notice> notices = noticeRepository.findAllByFestival(festivalRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(id + "에 해당하는 공지사항이 존재하지 않습니다.")));
+        int i =0;
+        for(Notice n : notices){
+            if(n.getId() == changeBannerReq.getNoticeIds().get(i)){
+                n.setPicked(true);
+                i++;
+            }
+            else{
+                n.setPicked(false);
+            }
+            if(changeBannerReq.getNoticeIds().size() == i){
+                break;
+            }
+        }
+        return "배너 등록";
     }
 }
 

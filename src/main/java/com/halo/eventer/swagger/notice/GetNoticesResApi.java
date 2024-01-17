@@ -11,23 +11,43 @@ import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Operation(summary = "공지사항 리스트 조회", description = "공지사항 한 개당 이미지, 이벤트명(title), 이벤트 간단설명(simpleExplanation)")
-@ApiResponse(responseCode = "200", description = "공지사항 리스트 조회 성공",
+@ApiResponse(responseCode = "200", description = "공지사항 목록 조회 성공",
         content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
                 examples = {
-                        @ExampleObject(name = "공지사항 리스트",
+                        @ExampleObject(name = "공지사항 목록",
                                 value = "[\n" +
                                         "    {\n" +
-                                        "        \"id\": 1,\n" +
-                                        "        \"title\": \"반입 금지 물품 안내\",\n" +
-                                        "        \"simpleExplanation\": \"안전하고 편안한 무대 관람을 위한 반입 금지 물품을 숙지해주세요!\",\n" +
+                                        "        \"title\": \"공지사항1\",\n" +
+                                        "        \"simpleExplanation\": \"안녕하세요\",\n" +
+                                        "        \"thumbnail\": \"url2\"\n" +
                                         "    },\n" +
                                         "    {\n" +
-                                        "        \"id\": 2,\n" +
-                                        "        \"title\": \"배리어프리존 안내\",\n" +
-                                        "        \"simpleExplanation\": \"모든 학우분들의 원활한 축제 참여를 위한 배리어프리존을 마련했습니다.\",\n" +
+                                        "        \"title\": \"공지사항2\",\n" +
+                                        "        \"simpleExplanation\": \"안녕하세요\",\n" +
+                                        "        \"thumbnail\": \"url2\"\n" +
+                                        "    },\n" +
+                                        "    {\n" +
+                                        "        \"title\": \"공지사항3\",\n" +
+                                        "        \"simpleExplanation\": \"안녕하세요\",\n" +
+                                        "        \"thumbnail\": \"url2\"\n" +
+                                        "    },\n" +
+                                        "    {\n" +
+                                        "        \"title\": \"공지사항4\",\n" +
+                                        "        \"simpleExplanation\": \"안녕하세요\",\n" +
+                                        "        \"thumbnail\": \"url2\"\n" +
+                                        "    },\n" +
+                                        "    {\n" +
+                                        "        \"title\": \"공지사항5\",\n" +
+                                        "        \"simpleExplanation\": \"안녕하세요\",\n" +
+                                        "        \"thumbnail\": \"url2\"\n" +
+                                        "    },\n" +
+                                        "    {\n" +
+                                        "        \"title\": \"돌림판 이벤트\",\n" +
+                                        "        \"simpleExplanation\": \"안녕하세요\",\n" +
+                                        "        \"thumbnail\": \"url2\"\n" +
                                         "    }\n" +
                                         "]",
-                                summary = "공지사항 리스트 조회 성공", description = "공지사항 리스트를 성공적으로 가져온 경우의 예제입니다.")
+                                summary = "공지사항 목록 조회 성공", description = "공지사항 목록을 성공적으로 조회한 경우의 예제입니다.")
                 }))
 public @interface GetNoticesResApi {
 }

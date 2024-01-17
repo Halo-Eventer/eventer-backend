@@ -31,6 +31,10 @@ public class Notice {
 
     private String content;
 
+    private String thumbnail;
+
+    private boolean picked;
+
     @OneToMany(mappedBy = "notice", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Image> images = new ArrayList<>();
 
@@ -46,11 +50,17 @@ public class Notice {
         this.simpleExplanation = n.getSimpleExplanation();
         this.subtitle = n.getSubtitle();
         this.content = n.getContent();
+        this.thumbnail = n.getThumbnail();
+        this.picked = false;
     }
 
 
     public void setFestival(Festival festival) {
         this.festival = festival;
 
+    }
+
+    public void setPicked(boolean picked) {
+        this.picked = picked;
     }
 }
