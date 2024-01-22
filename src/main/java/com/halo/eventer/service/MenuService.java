@@ -21,13 +21,15 @@ public class MenuService {
 
     private final MenuRepository menuRepository;
     private final StoreRepository storeRepository;
-    public String createMenu(MenuCreateDto menuCreateDto, Long storeId)throws Exception{
+    public String createMenu(List<MenuCreateDto> menuCreateDtos, Long storeId)throws Exception{
         //TODO 중복 검사 어떻게?
         Store store =storeRepository.findById(storeId).orElseThrow(()->new Exception("상점이 존재하지 않습니다."));
-        Menu menu = new Menu(menuCreateDto);
-        menu.setStore(store);
-
-        menuRepository.save(menu);
+        menuCreateDtos.stream().map(o->new Menu(o)).forEach(
+                o ->{
+                    o.setStore(store);
+                    menuRepository.save(o);
+                }
+        );
         return "저장완료";
     }
 

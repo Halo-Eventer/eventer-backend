@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Tag(name = "메뉴")
 @RestController
 @RequiredArgsConstructor
@@ -23,11 +25,11 @@ public class MenuController {
 
     @CreateMenuAPi
     @PostMapping()
-    public ResponseEntity<?> createMenu(@RequestBody MenuCreateDto menuCreateDto,
+    public ResponseEntity<?> createMenu(@RequestBody List<MenuCreateDto> menuCreateDtos,
                                         @RequestParam("storeId")Long id){
         try{
             return ResponseEntity.status(HttpStatus.OK)
-                    .body(menuService.createMenu(menuCreateDto, id));
+                    .body(menuService.createMenu(menuCreateDtos, id));
         }
         catch(Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
