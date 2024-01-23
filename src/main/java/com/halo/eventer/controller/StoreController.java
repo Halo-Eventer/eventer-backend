@@ -2,6 +2,7 @@ package com.halo.eventer.controller;
 
 
 
+import com.halo.eventer.common.StoreType;
 import com.halo.eventer.dto.store.StoreCreateDto;
 import com.halo.eventer.service.StoreService;
 import com.halo.eventer.swagger.festival.*;
@@ -51,10 +52,11 @@ public class StoreController {
 
     @GetStoresApi
     @GetMapping()
-    public ResponseEntity<?> getStores(@RequestParam("festivalId")Long id){
+    public ResponseEntity<?> getStores(@RequestParam("festivalId")Long id,
+                                       @RequestParam("type") StoreType type){
         try{
             return ResponseEntity.status(HttpStatus.OK)
-                    .body(storeService.getStores(id));
+                    .body(storeService.getStores(id,type));
         }
         catch(Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)

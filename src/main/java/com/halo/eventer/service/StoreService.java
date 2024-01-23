@@ -58,8 +58,9 @@ public class StoreService {
         return response;
     }
 
-    public List<GetAllStoreResDto> getStores(Long festivalId) throws Exception{
-        List<GetAllStoreResDto> response = storeRepository.findAllByFestival(festivalRepository.findById(festivalId).orElseThrow(()->new Exception("존재하지 않습니다.")))
+    public List<GetAllStoreResDto> getStores(Long festivalId,StoreType type) throws Exception{
+        
+        List<GetAllStoreResDto> response = storeRepository.findAllByFestivalAndType(festivalRepository.findById(festivalId).orElseThrow(()->new Exception("존재하지 않습니다.")),type)
                 .stream().map(o->new GetAllStoreResDto(o)).collect(Collectors.toList());
 
         return response;

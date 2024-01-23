@@ -11,7 +11,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Operation(summary = "상점 전체 조회", description = "(임시) 특정 축제 id로 상점 전체 조회")
+@Operation(summary = "상점 전체 조회", description = "(임시) 특정 축제 id로 상점 전체 조회, type에는 푸드트럭, 주점, 기타가 존재합니다." +
+        "만약 이 세가지로 요청을 하지 않는다면 400 Bad Request가 뜹니다.")
 @ApiResponse(responseCode = "200", description = "상점 목록 조회 성공",
         content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
                 examples = {
