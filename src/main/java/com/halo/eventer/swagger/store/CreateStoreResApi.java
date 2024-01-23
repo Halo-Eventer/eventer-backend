@@ -10,12 +10,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
-@ApiResponse(responseCode = "200", description = "저장이 완료되었습니다.",
+@ApiResponse(responseCode = "200", description = "가게 정보 생성 성공",
         content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
                 examples = {
-                        @ExampleObject(name = "저장 완료 예제",
-                                value = "저장완료",
-                                summary = "API 성공 예제", description = "저장이 완료된 경우의 예제입니다.")
+                        @ExampleObject(name = "가게 정보 생성 성공 예제",
+                                value = "{\"storeId\": \"6\"}",
+                                summary = "가게 정보 생성 성공 예제", description = "가게 정보를 성공적으로 생성한 경우의 예제입니다.")
                 }))
 public @interface CreateStoreResApi {
 }

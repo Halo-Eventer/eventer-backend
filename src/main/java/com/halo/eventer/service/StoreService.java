@@ -5,6 +5,7 @@ import com.halo.eventer.dto.festival.FestivalCreateDto;
 import com.halo.eventer.dto.festival.FestivalResDto;
 import com.halo.eventer.dto.store.GetAllStoreResDto;
 import com.halo.eventer.dto.store.StoreCreateDto;
+import com.halo.eventer.dto.store.StoreCreateResDto;
 import com.halo.eventer.dto.store.StoreResDto;
 import com.halo.eventer.entity.Festival;
 import com.halo.eventer.entity.Image;
@@ -28,7 +29,7 @@ public class StoreService {
     private final ImageRepository imageRepository;
 
     @Transactional
-    public String createStore(StoreCreateDto storeCreateDto, Long festivalId)throws Exception{
+    public StoreCreateResDto createStore(StoreCreateDto storeCreateDto, Long festivalId)throws Exception{
         //TODO:: 매장 중복 검사 어떻게?
 
         Store store = Store.builder().storeCreateDto(storeCreateDto)
@@ -47,7 +48,7 @@ public class StoreService {
             store.setType(StoreType.기타);
         }
         storeRepository.save(store);
-        return "저장완료";
+        return new StoreCreateResDto(store.getId());
     }
 
     public StoreResDto getStore(Long storeId)throws Exception{
