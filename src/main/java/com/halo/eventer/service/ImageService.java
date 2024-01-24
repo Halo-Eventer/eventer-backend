@@ -81,6 +81,8 @@ public class ImageService {
                 originalFileExtension = ".jpg";
             else if (contentType.contains("image/png"))
                 originalFileExtension = ".png";
+            else if (contentType.contains("image/jpg"))
+                originalFileExtension =".jpg";
             else  // 다른 확장자일 경우 처리 x
                 throw new Exception("해당 파일 확장자는 지원하지 않습니다.");
         }
