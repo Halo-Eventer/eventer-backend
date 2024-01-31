@@ -5,6 +5,7 @@ import com.halo.eventer.dto.notice.*;
 import com.halo.eventer.entity.Festival;
 import com.halo.eventer.entity.Image;
 import com.halo.eventer.entity.Notice;
+import com.halo.eventer.entity.Store;
 import com.halo.eventer.repository.FestivalRepository;
 import com.halo.eventer.repository.ImageRepository;
 import com.halo.eventer.repository.NoticeRepository;
@@ -87,6 +88,13 @@ public class NoticeService {
             }
         }
         return "배너 등록";
+    }
+
+    @Transactional
+    public String deleteNotice(Long noticeId) throws Exception{
+        Notice notice = noticeRepository.findById(noticeId).orElseThrow(()->new NotFoundException("존재하지 않습니다."));
+        noticeRepository.delete(notice);
+        return "삭제완료";
     }
 }
 

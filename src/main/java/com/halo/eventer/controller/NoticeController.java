@@ -4,6 +4,7 @@ import com.halo.eventer.dto.notice.ChangeBannerReq;
 import com.halo.eventer.dto.notice.NoticeReqDto;
 import com.halo.eventer.service.NoticeService;
 import com.halo.eventer.swagger.notice.*;
+import com.halo.eventer.swagger.store.DeleteStoreApi;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -73,6 +74,19 @@ public class NoticeController {
         try {
             return ResponseEntity.status(HttpStatus.OK)
                     .body(noticeService.changeBanner(changeBannerReq,id));
+        }
+        catch(Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(e.getMessage());
+        }
+    }
+
+
+    @DeleteMapping("/{noticeId}")
+    public ResponseEntity<?> deleteStore(@PathVariable("noticeId") Long id){
+        try{
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(noticeService.deleteNotice(id));
         }
         catch(Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
