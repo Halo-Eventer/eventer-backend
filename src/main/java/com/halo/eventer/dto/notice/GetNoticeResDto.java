@@ -21,6 +21,7 @@ public class GetNoticeResDto {
 
     public GetNoticeResDto(Notice notice) {
         this.title = notice.getTitle();
+        this.thumbnail = notice.getThumbnail();
         this.subtitle = notice.getSubtitle();
         this.content = notice.getContent();
     }
