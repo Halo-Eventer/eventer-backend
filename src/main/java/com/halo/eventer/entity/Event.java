@@ -20,7 +20,7 @@ public class Event {
     private String tag;
 
     private String name;
-
+    private String subtitle;
     private String summary;
 
     @Column(columnDefinition = "varchar(500)")
@@ -47,6 +47,7 @@ public class Event {
     public Event(EventCreateDto e){
         this.tag = e.getTag();
         this.name = e.getName();
+        this.subtitle =e.getSubtitle();
 
         this.summary = e.getSummary();
         this.content = e.getContent();

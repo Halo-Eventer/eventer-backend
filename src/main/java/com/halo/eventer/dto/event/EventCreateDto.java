@@ -13,7 +13,7 @@ public class EventCreateDto {
     private String tag;
 
     private String name;
-
+    private String subtitle;
     private String summary;
     private String content;
 

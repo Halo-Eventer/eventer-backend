@@ -16,6 +16,7 @@ public class EventResDto {
     private String tag;
 
     private String name;
+    private String subtitle;
 
     private String summary;
     private String content;
@@ -29,6 +30,7 @@ public class EventResDto {
     private List<String> images;
 
     public EventResDto(Event e){
+        this.subtitle =e.getSubtitle();
         this.tag = e.getTag();
         this.name = e.getName();
         this.summary = e.getSummary();
