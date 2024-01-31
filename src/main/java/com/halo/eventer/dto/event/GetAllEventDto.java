@@ -10,12 +10,16 @@ import lombok.NoArgsConstructor;
 public class GetAllEventDto {
     private Long id;
     private String name;
+    private String summary;
+    private String thumbnail;
     private double latitude; // 위도
     private double longitude; // 경도
 
     public GetAllEventDto(Event e) {
         this.id = e.getId();
         this.name = e.getName();
+        this.thumbnail = e.getThumbnail();
+        this.summary = e.getSummary();
         this.latitude = e.getLatitude();
         this.longitude = e.getLongitude();
     }

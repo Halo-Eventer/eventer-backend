@@ -11,8 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.webjars.NotFoundException;
 
-import javax.validation.constraints.Min;
-
 @Tag(name = "공지사항", description = "공지사항과 관련된 모든 것")
 @RestController
 @RequiredArgsConstructor

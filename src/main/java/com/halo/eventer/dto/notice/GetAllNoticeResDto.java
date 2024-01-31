@@ -9,13 +9,15 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 @Builder
-@Schema(name = "이벤트 명단에 들어갈 이벤트 한개의 정보")
 public class GetAllNoticeResDto {
+
+    private Long id;
     private String title;
     private String simpleExplanation;
     private String thumbnail;
 
     public GetAllNoticeResDto(Notice notice) {
+        this.id = notice.getId();
         this.title = notice.getTitle();
         this.simpleExplanation = notice.getSimpleExplanation();
         this.thumbnail = notice.getThumbnail();
