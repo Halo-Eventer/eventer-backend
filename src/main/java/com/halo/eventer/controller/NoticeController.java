@@ -81,9 +81,23 @@ public class NoticeController {
         }
     }
 
+    @PatchMapping("/{noticeId}")
+    public ResponseEntity<?> updateNotice(@PathVariable("noticeId") Long id,
+                                          @RequestBody NoticeReqDto noticeReqDto){
+        try{
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(noticeService.updateNotice(id,noticeReqDto));
+        }
+        catch(Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(e.getMessage());
+        }
+    }
+
+
 
     @DeleteMapping("/{noticeId}")
-    public ResponseEntity<?> deleteStore(@PathVariable("noticeId") Long id){
+    public ResponseEntity<?> deleteNotice(@PathVariable("noticeId") Long id){
         try{
             return ResponseEntity.status(HttpStatus.OK)
                     .body(noticeService.deleteNotice(id));

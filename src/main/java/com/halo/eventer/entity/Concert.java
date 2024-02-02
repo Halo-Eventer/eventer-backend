@@ -27,7 +27,7 @@ public class Concert {
 
     private String summary;
 
-    @Column(columnDefinition = "varchar(500)")
+    @Column(columnDefinition = "varchar(2000)")
     private String content;
 
     private double latitude; // 위도

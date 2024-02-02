@@ -1,11 +1,10 @@
 package com.halo.eventer.service;
 
 
+import com.halo.eventer.dto.event.EventCreateDto;
+import com.halo.eventer.dto.event.EventResDto;
 import com.halo.eventer.dto.notice.*;
-import com.halo.eventer.entity.Festival;
-import com.halo.eventer.entity.Image;
-import com.halo.eventer.entity.Notice;
-import com.halo.eventer.entity.Store;
+import com.halo.eventer.entity.*;
 import com.halo.eventer.repository.FestivalRepository;
 import com.halo.eventer.repository.ImageRepository;
 import com.halo.eventer.repository.NoticeRepository;
@@ -89,6 +88,26 @@ public class NoticeService {
         }
         return "배너 등록";
     }
+
+    @Transactional
+    public GetNoticeResDto updateNotice(Long noticeId, NoticeReqDto noticeReqDto) throws Exception {
+        Notice notice = noticeRepository.findById(noticeId).orElseThrow(() -> new NotFoundException("존재하지 않습니다"));
+        notice.setAll(noticeReqDto);
+        notice.getImages().stream().forEach(o->imageRepository.delete(o));
+        List<Image> images = noticeReqDto.getImages().stream().map(o-> new Image(o)).collect(Collectors.toList());
+
+        images.stream().forEach((o)-> {
+            o.setNotice(notice);
+            imageRepository.save(o);
+        });
+
+
+        GetNoticeResDto response = new GetNoticeResDto(notice);
+        response.setImages(images);
+
+        return response;
+    }
+
 
     @Transactional
     public String deleteNotice(Long noticeId) throws Exception{

@@ -29,13 +29,14 @@ public class Notice {
 
     private String subtitle;
 
+    @Column(columnDefinition = "varchar(2000)")
     private String content;
 
     private String thumbnail;
 
     private boolean picked;
 
-    @OneToMany(mappedBy = "notice", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE,orphanRemoval = true)
     private List<Image> images = new ArrayList<>();
 
     @LastModifiedDate
@@ -62,5 +63,13 @@ public class Notice {
 
     public void setPicked(boolean picked) {
         this.picked = picked;
+    }
+
+    public void setAll(NoticeReqDto n){
+        this.title = n.getTitle();
+        this.simpleExplanation = n.getSimpleExplanation();
+        this.subtitle = n.getSubtitle();
+        this.content = n.getContent();
+        this.thumbnail = n.getThumbnail();
     }
 }

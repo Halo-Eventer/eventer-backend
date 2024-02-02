@@ -24,7 +24,7 @@ public class Store {
 
     private String summary;
 
-    @Column(columnDefinition = "varchar(500)")
+    @Column(columnDefinition = "varchar(2000)")
     private String content;
 
     private String location;

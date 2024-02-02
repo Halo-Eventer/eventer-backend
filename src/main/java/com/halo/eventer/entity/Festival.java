@@ -23,6 +23,7 @@ public class Festival {
 
     private String name;
 
+    @Column(columnDefinition = "varchar(2000)")
     private String content;
 
     private String image;
