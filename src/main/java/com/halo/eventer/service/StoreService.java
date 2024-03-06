@@ -1,14 +1,10 @@
 package com.halo.eventer.service;
 
 import com.halo.eventer.common.StoreType;
-import com.halo.eventer.dto.festival.FestivalCreateDto;
-import com.halo.eventer.dto.festival.FestivalResDto;
 import com.halo.eventer.dto.store.GetAllStoreResDto;
 import com.halo.eventer.dto.store.StoreCreateDto;
 import com.halo.eventer.dto.store.StoreCreateResDto;
 import com.halo.eventer.dto.store.StoreResDto;
-import com.halo.eventer.entity.Festival;
-import com.halo.eventer.entity.Image;
 import com.halo.eventer.entity.Store;
 import com.halo.eventer.repository.FestivalRepository;
 import com.halo.eventer.repository.ImageRepository;
@@ -38,11 +34,26 @@ public class StoreService {
 
 
         store.setFestival(festivalRepository.findById(festivalId).orElseThrow(()-> new Exception("존재하지 않습니다.")));
-        if(storeCreateDto.getType().equals("주점")){
-            store.setType(StoreType.주점);
+        if(storeCreateDto.getType().equals("관리자")){
+            store.setType(StoreType.관리자);
         }
-        else if (storeCreateDto.getType().equals("푸드트럭")){
-            store.setType(StoreType.푸드트럭);
+        else if (storeCreateDto.getType().equals("관광안내소")){
+            store.setType(StoreType.관광안내소);
+        }
+        else if(storeCreateDto.getType().equals("편의점")){
+            store.setType(StoreType.편의점);
+        }
+        else if(storeCreateDto.getType().equals("화장실")){
+            store.setType(StoreType.화장실);
+        }
+        else if(storeCreateDto.getType().equals("쓰레기통")){
+            store.setType(StoreType.쓰레기통);
+        }
+        else if(storeCreateDto.getType().equals("흡연장")){
+            store.setType(StoreType.흡연장);
+        }
+        else if(storeCreateDto.getType().equals("주차장")){
+            store.setType(StoreType.주차장);
         }
         else{
             store.setType(StoreType.기타);
@@ -71,18 +82,31 @@ public class StoreService {
     public StoreResDto updateStore(Long storeId, StoreCreateDto storeCreateDto) throws Exception{
         Store store = storeRepository.findById(storeId).orElseThrow(()->new NotFoundException("존재하지 않습니다"));
         store.setStore(storeCreateDto);
-        if(storeCreateDto.getType().equals("주점")){
-            store.setType(StoreType.주점);
+        if(storeCreateDto.getType().equals("관리자")){
+            store.setType(StoreType.관리자);
         }
-        else if (storeCreateDto.getType().equals("푸드트럭")){
-            store.setType(StoreType.푸드트럭);
+        else if (storeCreateDto.getType().equals("관광안내소")){
+            store.setType(StoreType.관광안내소);
+        }
+        else if(storeCreateDto.getType().equals("편의점")){
+            store.setType(StoreType.편의점);
+        }
+        else if(storeCreateDto.getType().equals("화장실")){
+            store.setType(StoreType.화장실);
+        }
+        else if(storeCreateDto.getType().equals("쓰레기통")){
+            store.setType(StoreType.쓰레기통);
+        }
+        else if(storeCreateDto.getType().equals("흡연장")){
+            store.setType(StoreType.흡연장);
+        }
+        else if(storeCreateDto.getType().equals("주차장")){
+            store.setType(StoreType.주차장);
         }
         else{
             store.setType(StoreType.기타);
         }
         StoreResDto response = new StoreResDto(store);
-
-
 
         return response;
     }

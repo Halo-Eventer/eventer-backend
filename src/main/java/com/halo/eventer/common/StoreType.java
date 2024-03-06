@@ -4,5 +4,5 @@ import lombok.ToString;
 
 
 public enum StoreType {
-    주점,푸드트럭,기타;
+    관리자,관광안내소,편의점,화장실,쓰레기통,흡연장,주차장,기타;
 }

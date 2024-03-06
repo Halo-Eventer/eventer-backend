@@ -21,6 +21,8 @@ public class StoreResDto {
     private String content;
 
     private String location;
+    private double latitude; // 위도
+    private double longitude; // 경도
 
     private Boolean isOperation;
 
@@ -41,6 +43,8 @@ public class StoreResDto {
         this.operationHours = store.getOperationHours();
         this.type = store.getType().toString();
         this.thumbnail = store.getThumbnail();
+        this.latitude = store.getLatitude();
+        this.longitude = store.getLongitude();
     }
 
     public void setMenus(List<Menu> menus){

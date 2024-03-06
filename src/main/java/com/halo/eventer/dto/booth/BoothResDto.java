@@ -21,6 +21,8 @@ public class BoothResDto {
 
     private String location;
 
+    private double latitude; // 위도
+    private double longitude; // 경도
 
     private Boolean isOperation;
 
@@ -40,6 +42,8 @@ public class BoothResDto {
         this.content = b.getContent();
         this.thumbnail = b.getThumbnail();
         this.location = b.getLocation();
+        this.latitude = b.getLatitude();
+        this.longitude = b.getLongitude();
     }
 
     public void setImages(List<Image> images){

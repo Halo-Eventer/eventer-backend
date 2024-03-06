@@ -17,6 +17,9 @@ public class AmenityResDto {
 
     private String location;
 
+    private double latitude; // 위도
+    private double longitude; // 경도
+
     private Boolean isOperation;
 
     private String operationHours;
@@ -28,5 +31,7 @@ public class AmenityResDto {
         this.isOperation = amenity.getIsOperation();
         this.operationHours = amenity.getOperationHours();
         this.location = amenity.getLocation();
+        this.latitude = amenity.getLatitude();
+        this.longitude = amenity.getLongitude();
     }
 }

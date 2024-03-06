@@ -14,22 +14,22 @@ import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Getter
-@Schema(name = "공연장 정보")
 public class ConcertResDto {
 
-    @Schema(example = "공연장")
+
     private String tag;
 
-    @Schema(example = "메인 공연장")
+
     private String name;
 
-    @Schema(example = "소수빈, IVE, 10CM 공연")
     private String summary;
 
     private String content;
 
-    @Schema(example = "학교 중앙 운동장")
     private String location;
+
+    private double latitude; // 위도
+    private double longitude; // 경도
 
     private Boolean isOperation;
 
@@ -47,6 +47,8 @@ public class ConcertResDto {
         this.isOperation = c.getIsOperation();
         this.operationHours = c.getOperationHours();
         this.thumbnail = c.getThumbnail();
+        this.latitude =  c.getLatitude();
+        this.longitude = c.getLongitude();
     }
 
     public void setImages(List<Image> images){

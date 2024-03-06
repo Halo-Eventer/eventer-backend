@@ -59,6 +59,19 @@ public class Concert {
         this.thumbnail = c.getThumbnail();
     }
 
+    public void setAll(ConcertCreateDto c){
+        this.tag = c.getTag();
+        this.name = c.getName();
+        this.summary = c.getSummary();
+        this.content = c.getContent();
+        this.latitude = c.getLatitude();
+        this.longitude = c.getLongitude();
+        this.location = c.getLocation();
+        this.isOperation = c.getIsOperation();
+        this.operationHours = c.getOperationHours();
+        this.thumbnail = c.getThumbnail();
+    }
+
     public void setFestival(Festival festival) {
         this.festival = festival;
     }

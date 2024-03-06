@@ -1,7 +1,10 @@
 package com.halo.eventer.controller;
 
 import com.halo.eventer.dto.concert.ConcertCreateDto;
+import com.halo.eventer.dto.event.EventCreateDto;
 import com.halo.eventer.service.ConcertService;
+import com.halo.eventer.swagger.event.DeleteEventApi;
+import com.halo.eventer.swagger.event.UpdateEventApi;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -49,6 +52,33 @@ public class ConcertController {
             return ResponseEntity.status(HttpStatus.OK)
                     .body(concertService.getConcert(id));
         } catch (NotFoundException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(e.getMessage());
+        }
+    }
+
+    @UpdateEventApi
+    @PatchMapping("/{concertId}")
+    public ResponseEntity<?> updateConcert(@PathVariable("concertId") Long id,
+                                         @RequestBody ConcertCreateDto createDto){
+        try{
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(concertService.updateConcert(id, createDto));
+        }
+        catch(Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(e.getMessage());
+        }
+    }
+
+    @DeleteEventApi
+    @DeleteMapping("/{concertId}")
+    public ResponseEntity<?> deleteConcert(@PathVariable("concertId") Long id){
+        try{
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(concertService.deleteEvent(id));
+        }
+        catch(Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(e.getMessage());
         }

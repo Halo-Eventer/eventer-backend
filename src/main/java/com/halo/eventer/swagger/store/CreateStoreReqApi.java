@@ -11,6 +11,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Operation(summary = "상점 등록", description = "상점 정보 등록(주점, 푸드트럭)")
+@Operation(summary = "상점 등록", description = "상점 정보 등록(관리자,관광안내소,편의점,화장실,쓰레기통,흡연장,주차장,기타)")
 public @interface CreateStoreReqApi {
 }

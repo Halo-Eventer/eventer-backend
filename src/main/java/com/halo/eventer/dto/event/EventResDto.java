@@ -22,6 +22,8 @@ public class EventResDto {
     private String content;
 
     private String location;
+    private double latitude; // 위도
+    private double longitude; // 경도
 
     private Boolean isOperation;
     private String operationHours;
@@ -39,6 +41,8 @@ public class EventResDto {
         this.isOperation = e.getIsOperation();
         this.operationHours = e.getOperationHours();
         this.thumbnail = e.getThumbnail();
+        this.latitude = e.getLatitude();
+        this.longitude = e.getLongitude();
     }
 
     public void setImages(List<Image> images){

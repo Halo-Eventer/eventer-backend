@@ -4,7 +4,9 @@ import com.halo.eventer.dto.booth.GetAllBoothResDto;
 import com.halo.eventer.dto.concert.ConcertCreateDto;
 import com.halo.eventer.dto.concert.ConcertResDto;
 import com.halo.eventer.dto.concert.GetAllConcertDto;
+import com.halo.eventer.dto.event.EventCreateDto;
 import com.halo.eventer.dto.event.EventResDto;
+import com.halo.eventer.dto.notice.GetNoticeResDto;
 import com.halo.eventer.entity.*;
 import com.halo.eventer.repository.ConcertRepository;
 import com.halo.eventer.repository.FestivalRepository;
@@ -64,19 +66,30 @@ public class ConcertService {
         return response;
     }
 
-//    /**   isOperation 업데이트   */
-//    public Boolean updateConcertStatus(Concert concert) {
-//        LocalDateTime useTime = concert.getUseTime();
-//        LocalDateTime openingTime = concert.getOpeningTime();
-//        LocalDateTime closingTime = concert.getClosingTime();
-//
-//        boolean isOperation = isWithinOperationHours(useTime, openingTime, closingTime);
-//        return isOperation;
-//    }
-//
-//    /**   isOperation Boolean 값 확인하기   */
-//    public boolean isWithinOperationHours(LocalDateTime useTime, LocalDateTime openingTime, LocalDateTime closingTime) {
-//
-//        return !useTime.isBefore(openingTime) && !useTime.isAfter(closingTime);
-//    }
+    @Transactional
+    public ConcertResDto updateConcert(Long concertId, ConcertCreateDto createDto) throws Exception {
+        Concert concert = concertRepository.findById(concertId).orElseThrow(() -> new NotFoundException("존재하지 않습니다"));
+        concert.setAll(createDto);
+
+        concert.getImages().stream().forEach(o->imageRepository.delete(o));
+        List<Image> images = createDto.getImages().stream().map(o-> new Image(o)).collect(Collectors.toList());
+
+        images.stream().forEach((o)-> {
+            o.setConcert(concert);
+            imageRepository.save(o);
+        });
+
+
+        ConcertResDto response = new ConcertResDto(concert);
+        response.setImages(images);
+
+        return response;
+    }
+
+    @Transactional
+    public String deleteEvent(Long eventId) throws Exception {
+       Concert concert = concertRepository.findById(eventId).orElseThrow(() -> new NotFoundException("존재하지 않습니다."));
+        concertRepository.delete(concert);
+        return "삭제완료";
+    }
 }
