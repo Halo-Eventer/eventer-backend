@@ -11,12 +11,14 @@ public class GetAllBoothResDto {
 
     private Long id;
     private String name;
+    private String icon;
     private double latitude; // 위도
     private double longitude; // 경도
 
     public GetAllBoothResDto(Booth b) {
         this.id = b.getId();
         this.name = b.getName();
+        this.icon = b.getThumbnail();
         this.latitude = b.getLatitude();
         this.longitude = b.getLongitude();
     }
