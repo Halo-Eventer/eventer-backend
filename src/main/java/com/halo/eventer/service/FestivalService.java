@@ -1,7 +1,6 @@
 package com.halo.eventer.service;
 
 
-import com.halo.eventer.dto.festival.BannerResDto;
 import com.halo.eventer.dto.festival.FestivalCreateDto;
 import com.halo.eventer.dto.festival.FestivalResDto;
 import com.halo.eventer.entity.Festival;
@@ -54,11 +53,5 @@ public class FestivalService {
         Festival festival = festivalRepository.findById(id).orElseThrow(()->new NotFoundException("존재하지 않습니다."));
         festivalRepository.delete(festival);
         return "삭제완료";
-    }
-
-    public List<BannerResDto> getBanner(Long id) throws Exception{
-        List<Notice> notices =noticeRepository.findAllByFestivalAndPicked(festivalRepository.findById(id).orElseThrow(()->new Exception("해당 축제가 존재하지 않습니다.")),true);
-
-        return notices.stream().map(o->new BannerResDto(o)).collect(Collectors.toList());
     }
 }

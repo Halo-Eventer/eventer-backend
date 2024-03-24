@@ -4,8 +4,7 @@ import com.halo.eventer.dto.booth.GetAllBoothResDto;
 import com.halo.eventer.dto.concert.ConcertCreateDto;
 import com.halo.eventer.dto.concert.ConcertResDto;
 import com.halo.eventer.dto.concert.GetAllConcertDto;
-import com.halo.eventer.dto.event.EventCreateDto;
-import com.halo.eventer.dto.event.EventResDto;
+
 import com.halo.eventer.dto.notice.GetNoticeResDto;
 import com.halo.eventer.entity.*;
 import com.halo.eventer.repository.ConcertRepository;

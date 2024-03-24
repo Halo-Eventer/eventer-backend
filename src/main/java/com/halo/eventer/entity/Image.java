@@ -20,9 +20,6 @@ public class Image {
     @JoinColumn(name = "booth_id")
     private Booth booth;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "event_id")
-    private Event event;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "concert_id")
@@ -44,9 +41,6 @@ public class Image {
         this.image_url = image_url;
     }
 
-    public void setEvent(Event event) {
-        this.event = event;
-    }
 
     public void setConcert(Concert concert) {
         this.concert = concert;

@@ -1,10 +1,8 @@
 package com.halo.eventer.controller;
 
 import com.halo.eventer.dto.concert.ConcertCreateDto;
-import com.halo.eventer.dto.event.EventCreateDto;
+
 import com.halo.eventer.service.ConcertService;
-import com.halo.eventer.swagger.event.DeleteEventApi;
-import com.halo.eventer.swagger.event.UpdateEventApi;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -57,7 +55,7 @@ public class ConcertController {
         }
     }
 
-    @UpdateEventApi
+
     @PatchMapping("/{concertId}")
     public ResponseEntity<?> updateConcert(@PathVariable("concertId") Long id,
                                          @RequestBody ConcertCreateDto createDto){
@@ -71,7 +69,7 @@ public class ConcertController {
         }
     }
 
-    @DeleteEventApi
+
     @DeleteMapping("/{concertId}")
     public ResponseEntity<?> deleteConcert(@PathVariable("concertId") Long id){
         try{

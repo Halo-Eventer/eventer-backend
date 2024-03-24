@@ -75,17 +75,4 @@ public class FestivalController {
                     .body(e.getMessage());
         }
     }
-
-    @GetHomeApi
-    @GetMapping("/home/{festivalId}")
-    public ResponseEntity<?> getBanner(@PathVariable("festivalId") Long id){
-        try{
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body(festivalService.getBanner(id));
-        }
-        catch(Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(e.getMessage());
-        }
-    }
 }

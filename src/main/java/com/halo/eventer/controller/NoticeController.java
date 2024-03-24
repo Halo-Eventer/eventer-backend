@@ -1,10 +1,9 @@
 package com.halo.eventer.controller;
 
-import com.halo.eventer.dto.notice.ChangeBannerReq;
+import com.halo.eventer.common.ArticleType;
 import com.halo.eventer.dto.notice.NoticeReqDto;
 import com.halo.eventer.service.NoticeService;
 import com.halo.eventer.swagger.notice.*;
-import com.halo.eventer.swagger.store.DeleteStoreApi;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -37,15 +36,16 @@ public class NoticeController {
     }
 
 
-    /**   공지사항 리스트 조회하기   */
+    /**   공지사항 / 이벤트 리스트 조회하기   */
     @GetNoticesReqApi
     @GetNoticesResApi
     @GetMapping("/{festivalId}/list")
-    public ResponseEntity<?> inquireNotices(@PathVariable Long festivalId) {
+    public ResponseEntity<?> inquireNotices(@PathVariable Long festivalId,
+                                            @RequestParam("type") ArticleType type) {
 
         try {
             return ResponseEntity.status(HttpStatus.OK)
-                    .body(noticeService.inquireNotices(festivalId));
+                    .body(noticeService.inquireNotices(festivalId,type));
         } catch (NotFoundException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(e.getMessage());
@@ -53,7 +53,7 @@ public class NoticeController {
     }
 
 
-    /**   단일 공지사항 조회하기   */
+    /**   단일 공지사항 / 이벤트 조회하기   */
     @GetNoticeReqApi
     @GetNoticeResApi
     @GetMapping("/{noticeId}")
@@ -68,12 +68,12 @@ public class NoticeController {
     }
 
     @SelectBannerApi
-    @PostMapping("/banner/{festivalId}")
-    public ResponseEntity<?> changeBanner(@RequestBody ChangeBannerReq changeBannerReq,
-                                          @PathVariable("festivalId") Long id){
+    @PostMapping("/banner")
+    public ResponseEntity<?> changeBanner(@RequestParam("noticeId") Long noticeId,
+                                          @RequestParam("pick") Boolean pick){
         try {
             return ResponseEntity.status(HttpStatus.OK)
-                    .body(noticeService.changeBanner(changeBannerReq,id));
+                    .body(noticeService.changeBanner(noticeId,pick));
         }
         catch(Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)

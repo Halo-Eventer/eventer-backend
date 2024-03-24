@@ -36,8 +36,6 @@ public class Festival {
     @OneToMany(mappedBy = "festival", fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
     private List<Store> stores = new ArrayList<>();
 
-    @OneToMany(mappedBy = "festival", fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
-    private List<Event> events = new ArrayList<>();
 
     @OneToMany(mappedBy = "festival", fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
     private List<Concert> concerts = new ArrayList<>();

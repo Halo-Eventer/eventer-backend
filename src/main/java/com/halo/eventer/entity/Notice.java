@@ -1,5 +1,6 @@
 package com.halo.eventer.entity;
 
+import com.halo.eventer.common.ArticleType;
 import com.halo.eventer.dto.notice.NoticeReqDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,8 +26,6 @@ public class Notice {
 
     private String title;
 
-    private String simpleExplanation;
-
     private String subtitle;
 
     @Column(columnDefinition = "varchar(2000)")
@@ -35,6 +34,9 @@ public class Notice {
     private String thumbnail;
 
     private boolean picked;
+
+    @Enumerated(EnumType.STRING)
+    private ArticleType type;
 
     @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE,orphanRemoval = true)
     private List<Image> images = new ArrayList<>();
@@ -48,10 +50,10 @@ public class Notice {
 
     public Notice(NoticeReqDto n) {
         this.title = n.getTitle();
-        this.simpleExplanation = n.getSimpleExplanation();
         this.subtitle = n.getSubtitle();
         this.content = n.getContent();
         this.thumbnail = n.getThumbnail();
+        this.type =n.getType();
         this.picked = false;
     }
 
@@ -67,9 +69,9 @@ public class Notice {
 
     public void setAll(NoticeReqDto n){
         this.title = n.getTitle();
-        this.simpleExplanation = n.getSimpleExplanation();
         this.subtitle = n.getSubtitle();
         this.content = n.getContent();
         this.thumbnail = n.getThumbnail();
+        this.type = n.getType();
     }
 }

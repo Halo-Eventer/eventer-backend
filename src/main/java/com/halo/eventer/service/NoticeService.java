@@ -1,8 +1,8 @@
 package com.halo.eventer.service;
 
 
-import com.halo.eventer.dto.event.EventCreateDto;
-import com.halo.eventer.dto.event.EventResDto;
+
+import com.halo.eventer.common.ArticleType;
 import com.halo.eventer.dto.notice.*;
 import com.halo.eventer.entity.*;
 import com.halo.eventer.repository.FestivalRepository;
@@ -44,10 +44,11 @@ public class NoticeService {
 
     }
 
+    // 전체 게시글 중 type 으로 조회
     @Transactional
-    public List<GetAllNoticeResDto> inquireNotices(Long festivalId) throws NotFoundException{
-        List<Notice> notices = noticeRepository.findAllByFestival(festivalRepository.findById(festivalId)
-                .orElseThrow(() -> new NotFoundException(festivalId + "에 해당하는 공지사항이 존재하지 않습니다.")));
+    public List<GetAllNoticeResDto> inquireNotices(Long festivalId, ArticleType type) throws NotFoundException{
+        List<Notice> notices = noticeRepository.findAllByFestivalAndType(festivalRepository.findById(festivalId)
+                .orElseThrow(() -> new NotFoundException(festivalId + "에 해당하는 공지사항이 존재하지 않습니다.")),type);
 
         List<GetAllNoticeResDto> response = notices.stream()
                 .map(o-> new GetAllNoticeResDto(o))
@@ -56,6 +57,8 @@ public class NoticeService {
         return response;
     }
 
+
+    // 단일 게시글 조회
     @Transactional
     public GetNoticeResDto getNotice(Long id) {
         Notice notice = noticeRepository.findById(id)
@@ -69,26 +72,16 @@ public class NoticeService {
 
     }
 
+    //배너 등록,해제
     @Transactional
-    public String changeBanner(ChangeBannerReq changeBannerReq, Long id) throws Exception{
-        List<Notice> notices = noticeRepository.findAllByFestival(festivalRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException(id + "에 해당하는 공지사항이 존재하지 않습니다.")));
-        int i =0;
-        for(Notice n : notices){
-            if(n.getId() == changeBannerReq.getNoticeIds().get(i)){
-                n.setPicked(true);
-                i++;
-            }
-            else{
-                n.setPicked(false);
-            }
-            if(changeBannerReq.getNoticeIds().size() == i){
-                break;
-            }
-        }
-        return "배너 등록";
+    public String changeBanner(Long noticeId, Boolean pick) throws Exception{
+        Notice notice = noticeRepository.findById(noticeId).orElseThrow(()->new Exception("실종자 정보가 존재하지 않습니다."));
+        notice.setPicked(pick);
+        return "반영 완료";
     }
 
+
+    //공지사항 수정
     @Transactional
     public GetNoticeResDto updateNotice(Long noticeId, NoticeReqDto noticeReqDto) throws Exception {
         Notice notice = noticeRepository.findById(noticeId).orElseThrow(() -> new NotFoundException("존재하지 않습니다"));

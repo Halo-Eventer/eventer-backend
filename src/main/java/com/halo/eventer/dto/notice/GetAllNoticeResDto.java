@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @AllArgsConstructor
 @Builder
@@ -13,13 +15,13 @@ public class GetAllNoticeResDto {
 
     private Long id;
     private String title;
-    private String simpleExplanation;
     private String thumbnail;
+    private LocalDateTime time;
 
     public GetAllNoticeResDto(Notice notice) {
         this.id = notice.getId();
         this.title = notice.getTitle();
-        this.simpleExplanation = notice.getSimpleExplanation();
         this.thumbnail = notice.getThumbnail();
+        this.time = notice.getUpdateTime();
     }
 }
