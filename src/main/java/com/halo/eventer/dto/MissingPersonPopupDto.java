@@ -10,14 +10,14 @@ public class MissingPersonPopupDto {
     private String name;
     private Integer age;
     private String gender;
-    private String image;
+    private String thumbnail;
     private String content;
 
     public MissingPersonPopupDto(MissingPerson m) {
         this.name = m.getName();
         this.age = m.getAge();
         this.gender = m.getGender();
-        this.image = m.getImage();
+        this.thumbnail = m.getThumbnail();
         this.content = m.getContent();
     }
 }

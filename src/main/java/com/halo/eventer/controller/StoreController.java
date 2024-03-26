@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "상점")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/store")
+@RequestMapping("/mapCategory")
 public class StoreController {
     private final StoreService storeService;
 
@@ -38,8 +38,8 @@ public class StoreController {
 
 
     @GetStoreApi
-    @GetMapping("/{storeId}")
-    public ResponseEntity<?> getStore(@PathVariable("storeId")Long id){
+    @GetMapping("/{mapId}")
+    public ResponseEntity<?> getStore(@PathVariable("mapId")Long id){
         try{
             return ResponseEntity.status(HttpStatus.OK)
                     .body(storeService.getStore(id));
@@ -66,8 +66,8 @@ public class StoreController {
 
 
     @UpdateStoreApi
-    @PatchMapping("/{storeId}")
-    public ResponseEntity<?> updateStore(@PathVariable("storeId") Long id,
+    @PatchMapping("/{mapId}")
+    public ResponseEntity<?> updateStore(@PathVariable("mapId") Long id,
                                          @RequestBody StoreCreateDto storeCreateDto){
         try{
             return ResponseEntity.status(HttpStatus.OK)
@@ -81,8 +81,8 @@ public class StoreController {
 
 
     @DeleteStoreApi
-    @DeleteMapping("/{storeId}")
-    public ResponseEntity<?> deleteStore(@PathVariable("storeId") Long id){
+    @DeleteMapping("/{mapId}")
+    public ResponseEntity<?> deleteStore(@PathVariable("mapId") Long id){
         try{
             return ResponseEntity.status(HttpStatus.OK)
                     .body(storeService.deleteStore(id));

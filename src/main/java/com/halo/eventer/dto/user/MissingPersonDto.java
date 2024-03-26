@@ -10,7 +10,7 @@ public class MissingPersonDto {
     private String name;
     private Integer age;
     private String gender;
-    private String image;
+    private String thumbnail;
     private String missingLocation;
     private String missingTime;
     private String content;

@@ -12,13 +12,13 @@ import lombok.Setter;
 public class LostDto {
     private String name;
     private String type;
-    private String image;
+    private String thumbnail;
     private String findDate;
 
     public LostDto(LostItem lostItem) {
         this.name = lostItem.getName();
         this.type = lostItem.getType();
-        this.image = lostItem.getImage();
+        this.thumbnail = lostItem.getThumbnail();
         this.findDate = lostItem.getFindDate();
     }
 }

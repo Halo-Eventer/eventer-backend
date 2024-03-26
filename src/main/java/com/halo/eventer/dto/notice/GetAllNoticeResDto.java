@@ -15,6 +15,7 @@ public class GetAllNoticeResDto {
 
     private Long id;
     private String title;
+    private String subtitle;
     private String thumbnail;
     private LocalDateTime time;
 
@@ -23,5 +24,6 @@ public class GetAllNoticeResDto {
         this.title = notice.getTitle();
         this.thumbnail = notice.getThumbnail();
         this.time = notice.getUpdateTime();
+        this.subtitle = notice.getSubtitle();
     }
 }

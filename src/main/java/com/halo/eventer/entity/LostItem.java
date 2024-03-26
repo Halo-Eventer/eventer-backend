@@ -21,21 +21,21 @@ public class LostItem {
     private Long id;
 
     private String name;
-    private String image;
+    private String thumbnail;
     private String findDate;
 
     private String type;
 
     public LostItem(LostDto lostDto) {
         this.name = lostDto.getName();
-        this.image = lostDto.getImage();
+        this.thumbnail = lostDto.getThumbnail();
         this.findDate = lostDto.getFindDate();
         this.type = lostDto.getType();
     }
 
     public void updateItem(LostDto lostDto) {
         this.name = lostDto.getName();
-        this.image = lostDto.getImage();
+        this.thumbnail = lostDto.getThumbnail();
         this.findDate = lostDto.getFindDate();
         this.type = lostDto.getType();
     }

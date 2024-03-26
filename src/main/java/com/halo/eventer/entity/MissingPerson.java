@@ -22,7 +22,7 @@ public class MissingPerson {
     private String name;
     private Integer age;
     private String gender;
-    private String image;
+    private String thumbnail;
     private String missingLocation;
     private String missingTime;
     private String content;
@@ -36,7 +36,7 @@ public class MissingPerson {
         this.name = m.getName();
         this.age = m.getAge();
         this.gender = m.getGender();
-        this.image = m.getImage();
+        this.thumbnail = m.getThumbnail();
         this.missingLocation = m.getMissingLocation();
         this.missingTime = m.getMissingTime();
         this.content = m.getContent();
@@ -49,7 +49,7 @@ public class MissingPerson {
         this.name = m.getName();
         this.age = m.getAge();
         this.gender = m.getGender();
-        this.image = m.getImage();
+        this.thumbnail = m.getThumbnail();
         this.missingLocation = m.getMissingLocation();
         this.missingTime = m.getMissingTime();
         this.content = m.getContent();

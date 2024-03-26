@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class StoreCreateResDto {
-    private Long storeId;
+    private Long mapId;
 
     public StoreCreateResDto(Long storeId) {
-        this.storeId = storeId;
+        this.mapId = storeId;
     }
 }
