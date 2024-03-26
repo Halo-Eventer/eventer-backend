@@ -34,29 +34,26 @@ public class StoreService {
 
 
         store.setFestival(festivalRepository.findById(festivalId).orElseThrow(()-> new Exception("존재하지 않습니다.")));
-        if(storeCreateDto.getType().equals("관리자")){
-            store.setType(StoreType.관리자);
+        if(storeCreateDto.getType().equals("MANAGER")){
+            store.setType(StoreType.MANAGER);
         }
-        else if (storeCreateDto.getType().equals("관광안내소")){
-            store.setType(StoreType.관광안내소);
+        else if (storeCreateDto.getType().equals("INFO")){
+            store.setType(StoreType.INFO);
         }
-        else if(storeCreateDto.getType().equals("편의점")){
-            store.setType(StoreType.편의점);
+        else if(storeCreateDto.getType().equals("SHOP")){
+            store.setType(StoreType.SHOP);
         }
-        else if(storeCreateDto.getType().equals("화장실")){
-            store.setType(StoreType.화장실);
+        else if(storeCreateDto.getType().equals("TOILET")){
+            store.setType(StoreType.TOILET);
         }
-        else if(storeCreateDto.getType().equals("쓰레기통")){
-            store.setType(StoreType.쓰레기통);
+        else if(storeCreateDto.getType().equals("SMOKING")){
+            store.setType(StoreType.SMOKING);
         }
-        else if(storeCreateDto.getType().equals("흡연장")){
-            store.setType(StoreType.흡연장);
-        }
-        else if(storeCreateDto.getType().equals("주차장")){
-            store.setType(StoreType.주차장);
+        else if(storeCreateDto.getType().equals("PARKING")){
+            store.setType(StoreType.PARKING);
         }
         else{
-            store.setType(StoreType.기타);
+            store.setType(StoreType.etc);
         }
         storeRepository.save(store);
         return new StoreCreateResDto(store.getId());
@@ -82,29 +79,26 @@ public class StoreService {
     public StoreResDto updateStore(Long storeId, StoreCreateDto storeCreateDto) throws Exception{
         Store store = storeRepository.findById(storeId).orElseThrow(()->new NotFoundException("존재하지 않습니다"));
         store.setStore(storeCreateDto);
-        if(storeCreateDto.getType().equals("관리자")){
-            store.setType(StoreType.관리자);
+        if(storeCreateDto.getType().equals("MANAGER")){
+            store.setType(StoreType.MANAGER);
         }
-        else if (storeCreateDto.getType().equals("관광안내소")){
-            store.setType(StoreType.관광안내소);
+        else if (storeCreateDto.getType().equals("INFO")){
+            store.setType(StoreType.INFO);
         }
-        else if(storeCreateDto.getType().equals("편의점")){
-            store.setType(StoreType.편의점);
+        else if(storeCreateDto.getType().equals("SHOP")){
+            store.setType(StoreType.SHOP);
         }
-        else if(storeCreateDto.getType().equals("화장실")){
-            store.setType(StoreType.화장실);
+        else if(storeCreateDto.getType().equals("TOILET")){
+            store.setType(StoreType.TOILET);
         }
-        else if(storeCreateDto.getType().equals("쓰레기통")){
-            store.setType(StoreType.쓰레기통);
+        else if(storeCreateDto.getType().equals("SMOKING")){
+            store.setType(StoreType.SMOKING);
         }
-        else if(storeCreateDto.getType().equals("흡연장")){
-            store.setType(StoreType.흡연장);
-        }
-        else if(storeCreateDto.getType().equals("주차장")){
-            store.setType(StoreType.주차장);
+        else if(storeCreateDto.getType().equals("PARKING")){
+            store.setType(StoreType.PARKING);
         }
         else{
-            store.setType(StoreType.기타);
+            store.setType(StoreType.etc);
         }
         StoreResDto response = new StoreResDto(store);
 
