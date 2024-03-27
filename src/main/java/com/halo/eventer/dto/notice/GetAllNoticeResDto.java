@@ -17,6 +17,7 @@ public class GetAllNoticeResDto {
     private String title;
     private String subtitle;
     private String thumbnail;
+    private boolean picked;
     private LocalDateTime time;
 
     public GetAllNoticeResDto(Notice notice) {
@@ -25,5 +26,6 @@ public class GetAllNoticeResDto {
         this.thumbnail = notice.getThumbnail();
         this.time = notice.getUpdateTime();
         this.subtitle = notice.getSubtitle();
+        this.picked = notice.isPicked();
     }
 }
