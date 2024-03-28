@@ -20,7 +20,7 @@ public class AdminController {
     private final AdminService adminService;
 
     //분실물 등록
-    @PostMapping("/lost")
+    @PostMapping("/lostItem")
     public ResponseEntity<?> uploadLost(@RequestBody LostDto lostDto){
         try {
             return ResponseEntity.status(HttpStatus.OK)
@@ -33,7 +33,7 @@ public class AdminController {
     }
 
     //분실물 수정
-    @PatchMapping("/lost/{itemId}")
+    @PatchMapping("/lostItem/{itemId}")
     public ResponseEntity<String> updateLostItem(@PathVariable(name = "itemId") Long itemId,
                                                  @RequestBody LostDto lostDto){
         try {
@@ -47,7 +47,7 @@ public class AdminController {
     }
 
     //분실물 삭제
-    @DeleteMapping("/lost/{itemId}")
+    @DeleteMapping("/lostItem/{itemId}")
     public ResponseEntity<String> deleteLostItem(@PathVariable(name = "itemId") Long itemId){
         try {
             return ResponseEntity.status(HttpStatus.OK)
@@ -60,7 +60,7 @@ public class AdminController {
     }
 
     //팝업 수정
-    @PatchMapping("/missing-person/popup")
+    @PatchMapping("/missingPerson/popup")
     public ResponseEntity<?> selectMissingPersonPopup(@Parameter(name = "missingId") Long missingId,
                                          @Parameter(name ="check") boolean check){
         try {
@@ -75,7 +75,7 @@ public class AdminController {
 
 
     //실종자 수정
-    @PatchMapping("missing-person/{missingId}")
+    @PatchMapping("missingPerson/{missingId}")
     public ResponseEntity<String> updateMissingPerson(@PathVariable(name = "missingId") Long missingId,
                                                       @RequestBody MissingPersonDto missingPersonDto) {
         try {
@@ -89,7 +89,7 @@ public class AdminController {
     }
 
     //실종자 삭제
-    @DeleteMapping("/missing-person/{missingId}")
+    @DeleteMapping("/missingPerson/{missingId}")
     public ResponseEntity<String> deleteMissingPerson(@PathVariable(name = "missingId") Long missingId){
         try {
             return ResponseEntity.status(HttpStatus.OK)
@@ -116,7 +116,7 @@ public class AdminController {
     }
 
     //긴급공지 전체조회
-    @GetMapping("/urgents")
+    @GetMapping("/urgent")
     public ResponseEntity<?> getUrgents(){
         try {
             return ResponseEntity.status(HttpStatus.OK)

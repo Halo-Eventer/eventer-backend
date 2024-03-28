@@ -16,7 +16,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/lost-item/{itemId}")
+    @GetMapping("/lostItem/{itemId}")
     public ResponseEntity<?> getLostItem(@PathVariable(name="itemId") Long itemId){
         try {
             return ResponseEntity.status(HttpStatus.OK)
@@ -28,7 +28,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/lost-items")
+    @GetMapping("/lostItem")
     public ResponseEntity<?> getAllLostItems(){
         try {
             return ResponseEntity.status(HttpStatus.OK)
@@ -41,13 +41,13 @@ public class UserController {
     }
 
 
-    @PostMapping("/missing-person")
+    @PostMapping("/missingPerson")
     public ResponseEntity<?> uploadMissingPerson(@RequestBody MissingPersonDto missingPerson){
         return ResponseEntity.status(HttpStatus.OK)
                 .body(userService.uploadMissingPerson(missingPerson));
     }
 
-    @GetMapping("/missing-persons")
+    @GetMapping("/missingPerson")
     public ResponseEntity<?> getMissingPerson(){
         try {
             return ResponseEntity.status(HttpStatus.OK)
@@ -59,7 +59,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/missing-person/{personId}")
+    @GetMapping("/missingPerson/{personId}")
     public ResponseEntity<?> getMissingPerson(@PathVariable(name="personId") Long personId){
         try {
             return ResponseEntity.status(HttpStatus.OK)

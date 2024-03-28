@@ -39,7 +39,7 @@ public class NoticeController {
     /**   공지사항 / 이벤트 리스트 조회하기   */
     @GetNoticesReqApi
     @GetNoticesResApi
-    @GetMapping("/{festivalId}/list")
+    @GetMapping("/{festivalId}")
     public ResponseEntity<?> inquireNotices(@PathVariable Long festivalId,
                                             @RequestParam("type") ArticleType type) {
 
@@ -56,11 +56,12 @@ public class NoticeController {
     /**   단일 공지사항 / 이벤트 조회하기   */
     @GetNoticeReqApi
     @GetNoticeResApi
-    @GetMapping("/{noticeId}")
-    public ResponseEntity<?> getNotice(@PathVariable("noticeId") Long id) {
+    @GetMapping("/{festivalId}/{noticeId}")
+    public ResponseEntity<?> getNotice(@PathVariable("festivalId") Long festivalId,
+            @PathVariable("noticeId") Long noticeId) {
         try {
             return ResponseEntity.status(HttpStatus.OK)
-                    .body(noticeService.getNotice(id));
+                    .body(noticeService.getNotice(noticeId));
         } catch (NotFoundException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(e.getMessage());
