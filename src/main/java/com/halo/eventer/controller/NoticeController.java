@@ -71,7 +71,8 @@ public class NoticeController {
     @SelectBannerApi
     @PostMapping("/banner")
     public ResponseEntity<?> changeBanner(@RequestParam("noticeId") Long noticeId,
-                                          @RequestParam("pick") Boolean pick){
+                                          @RequestParam("pick") Boolean pick)
+    {
         try {
             return ResponseEntity.status(HttpStatus.OK)
                     .body(noticeService.changeBanner(noticeId,pick));

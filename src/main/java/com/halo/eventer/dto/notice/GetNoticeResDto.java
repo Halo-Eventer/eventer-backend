@@ -1,5 +1,6 @@
 package com.halo.eventer.dto.notice;
 
+import com.halo.eventer.common.ArticleType;
 import com.halo.eventer.entity.Image;
 import com.halo.eventer.entity.Notice;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -16,6 +17,7 @@ public class GetNoticeResDto {
     private String thumbnail;
     private String subtitle;
     private String content;
+    private ArticleType type;
 
     private List<String> images;
 
@@ -24,6 +26,7 @@ public class GetNoticeResDto {
         this.thumbnail = notice.getThumbnail();
         this.subtitle = notice.getSubtitle();
         this.content = notice.getContent();
+        this.type = notice.getType();
     }
 
     public void setImages(List<Image> images){
