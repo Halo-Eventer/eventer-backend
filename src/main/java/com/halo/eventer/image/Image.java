@@ -18,8 +18,6 @@ public class Image {
 
     private String image_url;
 
-
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "concert_id")
     private Concert concert;

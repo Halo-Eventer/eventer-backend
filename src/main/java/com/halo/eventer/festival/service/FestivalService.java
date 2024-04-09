@@ -20,7 +20,6 @@ public class FestivalService {
 
 
     private final FestivalRepository festivalRepository;
-    private final NoticeRepository noticeRepository;
     public String createFestival(FestivalCreateDto festivalCreateDto)throws DuplicatedElementException {
         if(festivalRepository.findByLocation(festivalCreateDto.getLocation()).isPresent()){
             throw new DuplicatedElementException("중복생성");
