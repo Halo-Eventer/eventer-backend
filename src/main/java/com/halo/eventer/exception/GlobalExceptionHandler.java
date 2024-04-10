@@ -9,7 +9,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler({DuplicatedElementException.class})
-    public ResponseEntity<?> handleDuplicatedElement(DuplicatedElementException e){
+    public ResponseEntity<String> handleDuplicatedElement(DuplicatedElementException e){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(e.getMessage());
+    }
+
+    @ExceptionHandler({NoDataInDatabaseException.class})
+    public ResponseEntity<String> handleNoDataInDatabase(NoDataInDatabaseException e){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(e.getMessage());
     }

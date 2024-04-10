@@ -2,6 +2,7 @@ package com.halo.eventer.festival.service;
 
 
 import com.halo.eventer.exception.DuplicatedElementException;
+import com.halo.eventer.exception.NoDataInDatabaseException;
 import com.halo.eventer.festival.dto.FestivalCreateDto;
 import com.halo.eventer.festival.dto.FestivalResDto;
 import com.halo.eventer.festival.Festival;
@@ -29,23 +30,23 @@ public class FestivalService {
         return "저장완료";
     }
 
-    public FestivalResDto getFestival(Long id)throws Exception{
-        Festival festival = festivalRepository.findById(id).orElseThrow(()->new NotFoundException("존재하지 않습니다"));
+    public FestivalResDto getFestival(Long id)throws NoDataInDatabaseException{
+        Festival festival = festivalRepository.findById(id).orElseThrow(()->new NoDataInDatabaseException("존재하지 않습니다"));
         FestivalResDto response = new FestivalResDto(festival);
         return response;
     }
 
     @Transactional
-    public FestivalResDto updateFestival(Long id, FestivalCreateDto festivalCreateDto) throws Exception{
-        Festival festival = festivalRepository.findById(id).orElseThrow(()->new NotFoundException("존재하지 않습니다"));
+    public FestivalResDto updateFestival(Long id, FestivalCreateDto festivalCreateDto) throws NoDataInDatabaseException{
+        Festival festival = festivalRepository.findById(id).orElseThrow(()->new NoDataInDatabaseException("존재하지 않습니다"));
         festival.setFestival(festivalCreateDto);
         FestivalResDto response = new FestivalResDto(festival);
         return response;
     }
 
     @Transactional
-    public String deleteFestival(Long id) throws Exception{
-        Festival festival = festivalRepository.findById(id).orElseThrow(()->new NotFoundException("존재하지 않습니다."));
+    public String deleteFestival(Long id) throws NoDataInDatabaseException{
+        Festival festival = festivalRepository.findById(id).orElseThrow(()->new NoDataInDatabaseException("존재하지 않습니다."));
         festivalRepository.delete(festival);
         return "삭제완료";
     }

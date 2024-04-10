@@ -1,5 +1,6 @@
 package com.halo.eventer.festival.swagger;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -10,6 +11,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
+@Operation(summary = "축제 수정", description = "축제 id로 수정")
 @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "축제 정보 수정 성공",
                 content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
@@ -25,5 +27,5 @@ import java.lang.annotation.RetentionPolicy;
                                         summary = "축제 정보 수정 성공", description = "축제 정보를 성공적으로 수정한 경우 수정된 정보가 response로 전달")
                         }))
 })
-public @interface UpdateResApi {
+public @interface FestivalUpdateApi {
 }
